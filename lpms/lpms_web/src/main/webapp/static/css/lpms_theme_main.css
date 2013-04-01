@@ -1,0 +1,18 @@
+#main_container{
+	padding:70px 0 0 0;
+}
+
+.disable{
+	display: none;
+}
+.sort-button{
+	padding:6.5px;
+}
+.page-dropdown{
+   max-height:350px;
+	overflow: auto;
+}
+
+.light-background{
+	background: white;
+}

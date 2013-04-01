@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.qbright.lpms.web.dao.ServerMachineDao">
+	<select id="getByPage" parameterType="me.qbright.lpms.web.common.PageRequest"
+		resultType="ServerMachine" flushCache="true">
+		select * from server_machine
+		order by
+		${sort.orderBy} ${sort.order}
+		limit #{startCount} , #{pageSize}
+	</select>
+	<select id="getByPageUserId" 
+		 resultType="ServerMachine" flushCache="true">
+		select * from server_machine
+		where belong_to=#{userId}
+		order by
+		${pageRequest.sort.orderBy} ${pageRequest.sort.order}
+		limit #{pageRequest.startCount} , #{pageRequest.pageSize}
+	</select>
+	
+	
+	<select id="getTotalNum" resultType="Long">
+		select COUNT(*) from
+		server_machine
+	</select>
+	<select id="getById" parameterType="long" resultType="ServerMachine">
+		select *
+		from server_machine where id=#{id}
+	</select>
+	<select id="getByName" parameterType="String" resultType="ServerMachine">
+		select
+		* from server_machine where machineName=#{machineName}
+	</select>
+	<insert id="save" parameterType="ServerMachine"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into server_machine(belong_to,connection_ip,connection_port,system,last_login,machineName,password)values(#{belongTo},#{connection_ip},#{connection_port},#{system},#{last_login},#{machineName},#{password})
+	</insert>
+	<update id="update" flushCache="true" parameterType="ServerMachine">
+		update server_machine set machineName=#{machineName} , connection_ip=#{connection_ip}, 
+		connection_port=#{connection_port}, system=#{system} where id=#{id}
+	</update>
+	<delete id="delete" parameterType="long">
+		delete from server_machine where
+		id=#{id}
+	</delete>
+</mapper>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.qbright.lpms.web.dao.TestEntityDao">
+	<select id="getById" parameterType="long" resultType="TestEntity">
+		select id
+		,name,birthday from testTable where id=#{id}
+	</select>
+	<insert id="save" parameterType="TestEntity"  useGeneratedKeys="true" 
+		keyProperty="id">
+		insert into testTable(name,birthday)values(#{name},#{birthday})
+
+	</insert>
+</mapper>

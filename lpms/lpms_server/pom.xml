@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>me.qbright</groupId>
+		<artifactId>lpms</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<groupId>me.qbright</groupId>
+	<artifactId>lpms_server</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<name>lpms_server</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.fusesource</groupId>
+			<artifactId>sigar</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>za.co.softco</groupId>
+			<artifactId>tinyREST</artifactId>
+			<version>1.0.12</version>
+		</dependency>
+		<!-- json -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.11</version>
+		</dependency>
+
+
+		<!-- end json -->
+
+
+
+		<dependency>
+			<groupId>me.qbright</groupId>
+			<artifactId>lpms_common</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-assembly-plugin</artifactId>
+			<version>2.4</version>
+			<type>maven-plugin</type>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>lpms_server</finalName>
+		
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				  <configuration>            
+           <descriptorRefs>  
+             <descriptorRef>jar-with-dependencies</descriptorRef> 
+           </descriptorRefs>  
+           <archive>  
+             <manifest>  
+                <mainClass>me.qbright.lpms.server.Main</mainClass> <!--   含main方法的类   -->
+             </manifest>  
+           </archive>  
+        </configuration>  
+			</plugin>
+		</plugins>
+	</build>
+</project>

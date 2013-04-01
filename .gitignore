@@ -4,3 +4,14 @@
 *.jar
 *.war
 *.ear
+/lpms/.settings
+/lpms/.project
+/lpms/lpms_common/.settings
+/lpms/lpms_common/.classpath
+/lpms/lpms_common/.project
+/lpms/lpms_server/.project
+/lpms/lpms_server/.settings
+/lpms/lpms_server/.classpath
+/lpms/lpms_web/.project
+/lpms/lpms_web/.settings
+/lpms/lpms_web/.classpath

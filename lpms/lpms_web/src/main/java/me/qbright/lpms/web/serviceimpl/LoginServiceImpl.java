@@ -1,0 +1,38 @@
+/**
+ * @author qbright
+ *
+ * @date 2013-1-22
+ */
+package me.qbright.lpms.web.serviceimpl;
+
+import me.qbright.lpms.web.dao.UserDao;
+import me.qbright.lpms.web.entity.User;
+import me.qbright.lpms.web.service.LoginService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component("loginService")
+public class LoginServiceImpl implements LoginService {
+
+	@Autowired
+	private UserDao userDao;
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * me.qbright.lpms.web.service.LoginService#checkLogin(java.lang.String,
+	 * java.lang.String)
+	 */
+	@Override
+	public User checkLogin(User user) {
+		// TODO Auto-generated method stub
+		return userDao.checkLogin(user);
+	}
+
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
+
+
+}
