@@ -1,5 +1,8 @@
 package me.qbright.sigar.test;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import org.hyperic.sigar.CpuInfo;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.SigarException;
@@ -14,4 +17,6 @@ public class SigarTest {
 		Sigar sigar = new Sigar();
 		CpuInfo[] cpuInfos =  sigar.getCpuInfoList();
 	}
+
+	
 }
