@@ -1,0 +1,9 @@
+POST /rest/greet/setProperties HTTP/1.1
+Content-Type: text/xml
+Content-Length: 172
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Properties>
+   <Property name="country" value="South Africa"/>
+   <Property name="weather">Cloudy and cool</Property>
+</Properties>
