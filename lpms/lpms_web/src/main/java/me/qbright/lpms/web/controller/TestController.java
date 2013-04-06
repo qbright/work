@@ -2,7 +2,9 @@ package me.qbright.lpms.web.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import me.qbright.lpms.web.common.Page;
 import me.qbright.lpms.web.common.PageRequest;
@@ -44,8 +46,13 @@ public class TestController {
 		List<HttpMessageConverter<?>> list = new ArrayList<HttpMessageConverter<?>>();
 		list.add(new MappingJackson2HttpMessageConverter());
 		rt.setMessageConverters(list);
-		TestEntity te = rt.getForObject(
-				"http://localhost:8081/lpms_server/TestHandler/helloWorld", TestEntity.class);
+		
+		Map<String, Object> request = new HashMap<String, Object>();
+		request.put("username", "qbright");
+		request.put("password","1232345");
+	
+		TestEntity te = rt.postForObject(
+				"http://localhost:8081/lpms_server/hello?username=123", null,TestEntity.class, request);
 		System.out.println(te.getName());
 		return " ";
 	}

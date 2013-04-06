@@ -11,6 +11,7 @@ import me.qbright.lpms.server.rest.RestService;
 public class Main {
 	public static void main(String[] args)  {
 		RestService restService = new RestService();
+		System.out.println(ConfigCommon.getKeyInt("MIN_WORKERS"));
 		restService.start(ConfigCommon.getKeyInt("SERVICE_PORT"),ConfigCommon.getKeyInt("MIN_WORKERS"), ConfigCommon.getKeyInt("MAX_WORKERS"));
 		
 	}

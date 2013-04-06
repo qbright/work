@@ -11,6 +11,7 @@ import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.Enumeration;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -68,7 +69,74 @@ public class PackageScanUtil {
         this.classFilters = classFilters;
 
     }
+    
+    /**
+     * @param pathName 文件目录相对classloader路径
+     * @param recursive
+     * @return
+     */
+    public Set<File> getFileByJar(String pathName,boolean recursive){
+    		Set<File> files = new HashSet<File>();
+    	  try {
+			Enumeration<URL> urls = Thread.currentThread().getContextClassLoader().getResources(pathName);
+			
+			while(urls.hasMoreElements()){
+				doScanPackageByJar(pathName,urls.nextElement(), recursive,files );
+				
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+    	
+    	
+    	
+    	return null;
+    }
+    /**
+     * @param url
+     * @param recursive
+     * @param files
+     */
+    private void doScanPackageByJar(String pathName,URL url,boolean recursive,Set<File> files){
+    	  String packageName = pathName;
+          String package2Path = packageName.replace('.', '/'); 
+    	  JarFile jar;
+    	  
+          try {
+              jar = ((JarURLConnection) url.openConnection()).getJarFile();
+              Enumeration<JarEntry> entries = jar.entries();
+              while (entries.hasMoreElements()) {
+                  JarEntry entry = entries.nextElement();
+                  String name = entry.getName();
+                  if (!name.startsWith(package2Path) || entry.isDirectory()) {
+                      continue;
+                  }
 
+                  // 判断是否递归搜索子包
+                  if (!recursive
+                          && name.lastIndexOf('/') != package2Path.length()) {
+                      continue;
+                  }
+                  // 判断是否过滤 inner class
+                  if (this.excludeInner && name.indexOf('$') != -1) {
+                      logger.info("exclude inner class with name:" + name);
+                      continue;
+                  }
+                  String classSimpleName = name
+                          .substring(name.lastIndexOf('/') + 1);
+                  // 判定是否符合过滤条件
+                  if (this.filterClassName(classSimpleName)) {
+                      String className = name.replace('/', '.');
+                      System.out.println(className);
+                  }
+              }
+          } catch (IOException e) {
+              logger.error("IOException error:", e);
+          }
+    	
+    }
     /**
      * 扫描包
      * @param basePackage 基础包
