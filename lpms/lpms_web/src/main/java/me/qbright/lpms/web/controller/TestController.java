@@ -1,5 +1,6 @@
 package me.qbright.lpms.web.controller;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,14 +14,23 @@ import me.qbright.lpms.web.entity.User;
 import me.qbright.lpms.web.service.TestService;
 import me.qbright.lpms.web.service.UserManagerService;
 
+import org.restlet.data.Form;
+import org.restlet.data.Method;
+import org.restlet.data.Parameter;
+import org.restlet.resource.ClientResource;
+import org.restlet.resource.ResourceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * 
@@ -40,8 +50,8 @@ public class TestController {
 	private Page<User> page;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String test(Model model) {
-		RestTemplate rt = new RestTemplate();
+	public String test(Model model) throws ResourceException, IOException {
+		/*RestTemplate rt = new RestTemplate();
 
 		List<HttpMessageConverter<?>> list = new ArrayList<HttpMessageConverter<?>>();
 		list.add(new MappingJackson2HttpMessageConverter());
@@ -50,10 +60,26 @@ public class TestController {
 		Map<String, Object> request = new HashMap<String, Object>();
 		request.put("username", "qbright");
 		request.put("password","1232345");
-	
+		String url = "http://localhost:8081/lpms_server/hello";
+		
+		
+		
+		TestEntity te = rt.postForObject(url, null, TestEntity.class, request);
 		TestEntity te = rt.postForObject(
-				"http://localhost:8081/lpms_server/hello?username=123", null,TestEntity.class, request);
-		System.out.println(te.getName());
+				"http://localhost:8081/lpms_server/hello", null,TestEntity.class, request);
+		System.out.println(te.getName());*/
+		
+		
+		ClientResource client = new ClientResource(Method.POST, "http://localhost:8081/lpms_server/hello");
+		Form form = new Form();
+		
+		form.add("username", "qbright");
+		String entity = client.post(form.getWebRepresentation().getText()).getText();
+		
+		ObjectMapper om = new ObjectMapper();
+		
+		System.out.println(om.readValue(entity, TestEntity.class).getName());
+		
 		return " ";
 	}
 

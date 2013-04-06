@@ -296,5 +296,5 @@ function changePassword() {
 }
 
 function getDetail(machineId) {
-	alert(machineId);
+	jump(1, 'main_nav', 'user/machine_detail?a=123');
 }

@@ -6,7 +6,6 @@ package me.qbright.lpms.server.rest.handler;
 
 import java.io.IOException;
 
-import me.qbright.lpms.server.entity.TestEntity;
 import me.qbright.lpms.server.rest.RequestHandler;
 
 import org.codehaus.jackson.JsonGenerationException;
@@ -15,6 +14,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.SigarException;
 import org.restlet.resource.Get;
+import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
 /**
@@ -24,21 +24,20 @@ import org.restlet.resource.ServerResource;
 @RequestHandler(serverName = "/hello")
 public class TestRequestHandler extends ServerResource {
 
-	@Get("json")
+	@Post("json")
 	public String hello() throws JsonGenerationException, JsonMappingException,
 			IOException, SigarException {
 
+		
 	
 		Sigar sigar = new Sigar();
 
-		System.out.println(sigar.getCpuInfoList());
+		sigar.getCpuInfoList();
 
 		ObjectMapper om = new ObjectMapper();
 
-		TestEntity t = new TestEntity();
-		t.setName("hello I'm qbright");
-		String tString = om.writeValueAsString(t);
-		return tString;
+	
+		return null;
 	}
 
 }

@@ -36,6 +36,7 @@
 	<mvc:view-controller path="/index.jsp" view-name="redirect:/"/>
 	<mvc:view-controller path="/admin/add_user" view-name="static_page/add_user"/>
 	<mvc:view-controller path="/user/add_machine" view-name="static_page/add_machine"/>
+	<mvc:view-controller path="/user/machine_detail" view-name="static_page/machine_detail"/>
 	<!-- 将Controller抛出的异常转到特定View,保持SiteMesh的装饰效果 -->
 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
 		<property name="exceptionMappings">  

@@ -10,6 +10,7 @@ import org.restlet.Context;
 import org.restlet.Request;
 import org.restlet.Response;
 import org.restlet.Restlet;
+import org.restlet.data.Form;
 import org.restlet.routing.Filter;
 
 /**
@@ -36,10 +37,14 @@ public class AuthorizedBlock extends Filter{
 	protected int beforeHandle(Request request, Response response) {
 		// TODO Auto-generated method stub
 		int result = CONTINUE;
-
-
-		String query = request.getResourceRef().getQueryAsForm().getFirstValue("username");
 		
+		//Form form = new Form(request.getEntity());
+
+		
+
+		//System.out.println(form.getFirstValue("username"));
+		//String query = request.getResourceRef().getQueryAsForm().getFirstValue("username");
+		//logger.info(query);
 		return result;
 	}
 
