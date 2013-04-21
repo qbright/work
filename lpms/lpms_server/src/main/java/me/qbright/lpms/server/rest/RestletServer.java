@@ -1,7 +1,3 @@
-/**
- * @author qbright
- * 2013-4-4
- */
 package me.qbright.lpms.server.rest;
 
 import java.util.Set;

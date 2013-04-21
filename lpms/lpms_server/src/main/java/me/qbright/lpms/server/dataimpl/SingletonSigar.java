@@ -1,7 +1,3 @@
-/**
- * @author qbright
- * 2013-4-18
- */
 package me.qbright.lpms.server.dataimpl;
 
 import org.hyperic.sigar.Sigar;
@@ -14,6 +10,9 @@ import org.hyperic.sigar.Sigar;
 public enum SingletonSigar {
 	SIGAE {
 		public Sigar getInstance(){
+			
+			
+			
 			return sigar;
 		}
 	};

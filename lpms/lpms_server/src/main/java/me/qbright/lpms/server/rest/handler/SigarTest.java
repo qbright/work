@@ -4,26 +4,39 @@
  */
 package me.qbright.lpms.server.rest.handler;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.hyperic.sigar.CpuInfo;
 import org.hyperic.sigar.CpuPerc;
 import org.hyperic.sigar.FileSystem;
+import org.hyperic.sigar.FileSystemMap;
 import org.hyperic.sigar.FileSystemUsage;
 import org.hyperic.sigar.Mem;
+import org.hyperic.sigar.NetConnection;
 import org.hyperic.sigar.NetFlags;
+import org.hyperic.sigar.NetInfo;
 import org.hyperic.sigar.NetInterfaceConfig;
 import org.hyperic.sigar.NetInterfaceStat;
 import org.hyperic.sigar.OperatingSystem;
+import org.hyperic.sigar.ProcCpu;
+import org.hyperic.sigar.ProcCred;
+import org.hyperic.sigar.ProcCredName;
+import org.hyperic.sigar.ProcExe;
+import org.hyperic.sigar.ProcFd;
+import org.hyperic.sigar.ProcMem;
+import org.hyperic.sigar.ProcState;
+import org.hyperic.sigar.ProcTime;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.SigarException;
 import org.hyperic.sigar.Swap;
 import org.hyperic.sigar.Who;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.cglib.core.ProcessArrayCallback;
 
 
 /**
@@ -32,13 +45,12 @@ import org.junit.Test;
  */
 public class SigarTest {
 	private Sigar sigar;
-	@Before
 	public void beforeTest() {
-		System.setProperty("java.library.path", "target/sigar-lib");
+		System.setProperty("java.library.path", "target/classes/sigar-lib");
 		sigar = new Sigar();
 	}
+	
 	@SuppressWarnings("unchecked")
-	@Test
 	public void generalInfomation() throws SigarException, UnknownHostException {
 		
 		Runtime r = Runtime.getRuntime();
@@ -107,7 +119,6 @@ public class SigarTest {
 	
 		
 	}
-/*	@Test
 	public void memory() throws SigarException {
 		Mem mem = sigar.getMem();
 		// 内存总量
@@ -124,7 +135,7 @@ public class SigarTest {
 		// 当前交换区剩余量
 		System.out.println("当前交换区剩余量:    " + swap.getFree() / 1024L + "K free");
 	}
-	@Test
+/*	@Test
 	public void cpu() throws SigarException {
 		CpuInfo infos[] = sigar.getCpuInfoList();
 		CpuPerc cpuList[] = null;
@@ -147,8 +158,7 @@ public class SigarTest {
 		System.out.println("CPU当前错误率:    " + CpuPerc.format(cpu.getNice()));//
 		System.out.println("CPU当前空闲率:    " + CpuPerc.format(cpu.getIdle()));// 当前空闲率
 		System.out.println("CPU总的使用率:    " + CpuPerc.format(cpu.getCombined()));// 总的使用率
-	}
-	@Test
+	}*/
 	public void os() {
 		OperatingSystem OS = OperatingSystem.getInstance();
 		// 操作系统内核类型如： 386、486、586等x86
@@ -158,8 +168,8 @@ public class SigarTest {
 		// 系统描述
 		System.out.println("操作系统的描述:    " + OS.getDescription());
 		// 操作系统类型
-		// System.out.println("OS.getName():    " + OS.getName());
-		// System.out.println("OS.getPatchLevel():    " + OS.getPatchLevel());//
+		 System.out.println("OS.getName():    " + OS.getName());
+		 System.out.println("OS.getPatchLevel():    " + OS.getPatchLevel());//
 		// 操作系统的卖主
 		System.out.println("操作系统的卖主:    " + OS.getVendor());
 		// 卖主名称
@@ -171,7 +181,6 @@ public class SigarTest {
 		// 操作系统的版本号
 		System.out.println("操作系统的版本号:    " + OS.getVersion());
 	}
-	@Test
 	public void who() throws SigarException {
 		Who who[] = sigar.getWhoList();
 		if (who != null && who.length > 0) {
@@ -186,9 +195,9 @@ public class SigarTest {
 			}
 		}
 	}
-	@Test
 	public void file() throws SigarException {
 		FileSystem fslist[] = sigar.getFileSystemList();
+		FileSystemMap fsm = sigar.getFileSystemMap();
 		for (int i = 0; i < fslist.length; i++) {
 			System.out.println("分区的盘符名称" + i);
 			FileSystem fs = fslist[i];
@@ -203,6 +212,8 @@ public class SigarTest {
 			System.out.println("盘符类型名:    " + fs.getTypeName());
 			// 文件系统类型
 			System.out.println("盘符文件系统类型:    " + fs.getType());
+			System.out.println(fs.getOptions());
+			System.out.println(fs.toMap());
 			FileSystemUsage usage = null;
 			usage = sigar.getFileSystemUsage(fs.getDirName());
 			switch (fs.getType()) {
@@ -227,6 +238,7 @@ public class SigarTest {
 				// 文件系统资源的利用率
 				System.out.println(fs.getDevName() + "资源的利用率:    " + usePercent
 						+ "%");
+				System.out.println(usage.toMap());
 				break;
 			case 3:// TYPE_NETWORK ：网络
 				break;
@@ -244,19 +256,30 @@ public class SigarTest {
 		}
 		return;
 	}
-	@Test
 	public void net() throws SigarException {
 		String ifNames[] = sigar.getNetInterfaceList();
+		String a = "\n   ";
+		
 		for (int i = 0; i < ifNames.length; i++) {
 			String name = ifNames[i];
 			NetInterfaceConfig ifconfig = sigar.getNetInterfaceConfig(name);
+			System.out.println("====================================");
+			System.out.println(ifconfig.getBroadcast() + a +
+			ifconfig.getDescription() + a +
+			ifconfig.getDestination() + a +
+			ifconfig.getHwaddr() + a +
+			ifconfig.getMetric() + a +
+			ifconfig.getMtu() + a +
+			ifconfig.getName() + a +
+			ifconfig.getType());
 			System.out.println("网络设备名:    " + name);// 网络设备名
 			System.out.println("IP地址:    " + ifconfig.getAddress());// IP地址
 			System.out.println("子网掩码:    " + ifconfig.getNetmask());// 子网掩码
+/*			
 			if ((ifconfig.getFlags() & 1L) <= 0L) {
 				System.out.println("!IFF_UP...skipping getNetInterfaceStat");
 				continue;
-			}
+			}*/
 			NetInterfaceStat ifstat = sigar.getNetInterfaceStat(name);
 			System.out.println(name + "接收的总包裹数:" + ifstat.getRxPackets());// 接收的总包裹数
 			System.out.println(name + "发送的总包裹数:" + ifstat.getTxPackets());// 发送的总包裹数
@@ -269,7 +292,6 @@ public class SigarTest {
 		}
 
 	}
-	@Test
 	public void ethernet() throws SigarException {
 		String[] ifaces = sigar.getNetInterfaceList();
 		for (int i = 0; i < ifaces.length; i++) {
@@ -289,21 +311,21 @@ public class SigarTest {
 		}
 	}
 	@Test
-	public void proc() throws SigarException {
-		for(long l :sigar.getProcList()){
-			System.out.println(l);
-		}
-		System.out.println(sigar.getProcState(6940L).getName());//获得进程名称
-		System.out.println(sigar.getProcArgs(6940L));
-		for(String s : sigar.getProcArgs("6940") ){
-			System.out.println(s);
-		}
-		System.out.println(sigar.getProcCpu("6940"));
-		System.out.println(sigar.getProcExe("6940"));
-		System.out.println(sigar.getProcEnv("6940"));
-		System.out.println(sigar.getProcFd("6940"));
-		System.out.println(sigar.getProcMem("6940"));
-		System.out.println(sigar.getProcModules("6940"));
+	public void netConnection() throws SigarException, IOException {
+		String pid = "7784";
+		String[] procArgs = sigar.getProcArgs(pid);
+		ProcCpu procCpu =  sigar.getProcCpu(pid);
+		//ProcCred procCred = sigar.getProcCred(pid);
+		ProcCredName procCredName = sigar.getProcCredName(pid);
+		Map<String, Object> map = sigar.getProcEnv(pid);
+		ProcExe procExe = sigar.getProcExe(pid);
+		ProcFd procFd = sigar.getProcFd(pid);
+		ProcMem procMem = sigar.getProcMem(pid);
+		List procModules = sigar.getProcModules(pid);
+	    ProcState procState = sigar.getProcState(pid);
+		ProcTime procTime = sigar.getProcTime(pid);
+		System.out.println(123);
 	}
-	*/
+
+	
 }
