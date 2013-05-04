@@ -34,13 +34,11 @@ public class AuthorizedBlock extends Filter{
 		// TODO Auto-generated method stub
 		int result = CONTINUE;
 		
-		//Form form = new Form(request.getEntity());
+		Form form = new Form(request.getEntity());
 
 		
 
-		//System.out.println(form.getFirstValue("username"));
-		//String query = request.getResourceRef().getQueryAsForm().getFirstValue("username");
-		//logger.info(query);
+		System.out.println(form.getFirstValue("machine_name"));
 		return result;
 	}
 

@@ -11,19 +11,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.hyperic.sigar.CpuPerc;
 import org.hyperic.sigar.FileSystem;
 import org.hyperic.sigar.FileSystemMap;
 import org.hyperic.sigar.FileSystemUsage;
 import org.hyperic.sigar.Mem;
-import org.hyperic.sigar.NetConnection;
 import org.hyperic.sigar.NetFlags;
-import org.hyperic.sigar.NetInfo;
 import org.hyperic.sigar.NetInterfaceConfig;
 import org.hyperic.sigar.NetInterfaceStat;
 import org.hyperic.sigar.OperatingSystem;
 import org.hyperic.sigar.ProcCpu;
-import org.hyperic.sigar.ProcCred;
 import org.hyperic.sigar.ProcCredName;
 import org.hyperic.sigar.ProcExe;
 import org.hyperic.sigar.ProcFd;
@@ -34,9 +30,7 @@ import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.SigarException;
 import org.hyperic.sigar.Swap;
 import org.hyperic.sigar.Who;
-import org.junit.Before;
-import org.junit.Test;
-import org.springframework.cglib.core.ProcessArrayCallback;
+
 
 
 /**
@@ -310,21 +304,40 @@ public class SigarTest {
 			System.out.println(cfg.getName() + "网卡类型" + cfg.getType());//
 		}
 	}
-	@Test
 	public void netConnection() throws SigarException, IOException {
-		String pid = "7784";
-		String[] procArgs = sigar.getProcArgs(pid);
-		ProcCpu procCpu =  sigar.getProcCpu(pid);
-		//ProcCred procCred = sigar.getProcCred(pid);
-		ProcCredName procCredName = sigar.getProcCredName(pid);
-		Map<String, Object> map = sigar.getProcEnv(pid);
-		ProcExe procExe = sigar.getProcExe(pid);
-		ProcFd procFd = sigar.getProcFd(pid);
-		ProcMem procMem = sigar.getProcMem(pid);
-		List procModules = sigar.getProcModules(pid);
-	    ProcState procState = sigar.getProcState(pid);
-		ProcTime procTime = sigar.getProcTime(pid);
-		System.out.println(123);
+		for(int i = 0;i < sigar.getProcList().length ; i++){
+		long pid = sigar.getProcList()[i];
+		try{
+			System.out.println(pid);
+			String[] procArgs = sigar.getProcArgs(pid);
+			ProcCpu procCpu =  sigar.getProcCpu(pid);
+			System.out.println(procCpu.toMap());
+			//ProcCred procCred = sigar.getProcCred(pid);
+			ProcCredName procCredName = sigar.getProcCredName(pid);
+			System.out.println(procCredName.toMap());
+			Map<String, Object> map = sigar.getProcEnv(pid);
+			System.out.println(map);
+			ProcExe procExe = sigar.getProcExe(pid);
+			System.out.println(procExe.toMap());
+			ProcFd procFd = sigar.getProcFd(pid);
+			System.out.println(procFd.toMap());
+			ProcMem procMem = sigar.getProcMem(pid);
+			System.out.println(procMem.toMap());
+			List procModules = sigar.getProcModules(pid);
+			System.out.println(procModules);
+		    ProcState procState = sigar.getProcState(pid);
+		    
+		    System.out.println(procState.toMap());
+			ProcTime procTime = sigar.getProcTime(pid);
+			System.out.println(procTime.toMap());
+			System.out.println("=================================");
+			System.out.println(pid + " " + sigar.getProcState(pid).getName());
+
+		}catch(SigarException e){
+			continue;
+		}
+	
+		}
 	}
 
 	

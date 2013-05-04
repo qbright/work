@@ -296,5 +296,59 @@ function changePassword() {
 }
 
 function getDetail(machineId) {
-	jump(1, 'main_nav', 'user/machine_detail?a=123');
+	
+	$.ajax({
+		url : "user/checkAlive",
+		data : "id=" + machineId,
+		cache : false,
+		type : "POST",
+		dataType : "html",
+		success : function(response) {
+			if(response){
+				jump(1, 'main_nav', 'user/machine_detail?id=' + machineId);
+			}else{
+				alert("服务器无法连接,请检查服务器");
+			}
+		}
+	});
+
+}
+
+
+/**
+ * generalInfo
+ * @param type
+ */
+function getMachineDetail(type){
+	var index = 1;
+	var url = "";
+	switch (type) {
+	case "generalInfo":
+		url = "/machine/generalInfo";
+		break;
+
+	default:
+		break;
+	}
+	
+	jumpDetail(index, "machine_detail_menu", url);
+}
+
+function getDetailContent(url){
+	var machineId = $("#machineId").val();
+	$.ajax({
+		url : url,
+		data : "machineId=" + machineId,
+		cache : false,
+		type : "GET",
+		dataType : "html",
+		success : function(response) {
+			$("#machine_detail_container").html(response);
+		}
+	});
+}
+
+function jumpDetail(index, parentId, url){
+	getDetailContent(url);
+	resetMenu(index, parentId);
 }

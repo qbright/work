@@ -22,7 +22,6 @@ public enum FileSystemInfoMonitor {
 	FILESYSTEM_LIST("fileSystem_list",List.class){
 		@Override
 		public String getInfo(){
-			ObjectMapper om = new ObjectMapper();
 			try {
 				return om.writeValueAsString(fileSystemInfoData.getFileSystemList());
 			} catch (IOException e) {
@@ -37,7 +36,7 @@ public enum FileSystemInfoMonitor {
 	private static FileSystemInfoData fileSystemInfoData = DataUtil.FILESYSTEM_INFO_DATA;
 	private String name;
 	private Class<?> returnType;
-	
+	private static ObjectMapper om = new ObjectMapper();
 	private FileSystemInfoMonitor(String name,Class<?> returnType){
 		this.name = name;
 		this.returnType = returnType;

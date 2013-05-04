@@ -83,7 +83,13 @@ public class UserController {
 		return true;
 
 	}
-
+	
+	@RequestMapping(value="/checkAlive")
+	@ResponseBody
+	public boolean checkAlive(Long id){
+		return serverMachineManagerService.checkAlive(id);
+	}
+	
 	@RequestMapping(value = "/prepareUpdate")
 	public String prepareUpdate(ServerMachine serverMachine, Model model) {
 		model.addAttribute(serverMachineManagerService

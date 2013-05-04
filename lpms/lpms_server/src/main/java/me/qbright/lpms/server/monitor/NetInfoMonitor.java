@@ -14,37 +14,38 @@ import me.qbright.lpms.server.data.NetInfoData;
  * @date 2013-4-30
  */
 public enum NetInfoMonitor {
-	NETINFO_LIST("netInfo_list",List.class){
-		public String getInfo(){
-			ObjectMapper om = new ObjectMapper();
+	NETINFO_LIST("netInfo_list", List.class) {
+		public String getInfo() {
 			try {
 				return om.writeValueAsString(netInfoData.getNetInfos());
 			} catch (IOException e) {
-				log.error("数据获取失败",e);
+				log.error("数据获取失败", e);
 				return "{ }";
 			}
-			
+
 		}
 	};
-	
+
 	private String name;
 	private Class<?> returnType;
-	
-	private NetInfoMonitor(String name,Class<?> returnType){
+
+	private NetInfoMonitor(String name, Class<?> returnType) {
 		this.name = name;
 		this.returnType = returnType;
 	}
-	
-	
+
 	abstract public String getInfo();
+
 	private static NetInfoData netInfoData = DataUtil.NET_INFO_DATA;
 	private static Logger log = Logger.getLogger(NetInfoMonitor.class);
-	public String getName(){
+	private static ObjectMapper om = new ObjectMapper();
+
+	public String getName() {
 		return this.name;
 	}
-	public Class<?> getReturnType(){
+
+	public Class<?> getReturnType() {
 		return returnType;
 	}
-	
-	
+
 }

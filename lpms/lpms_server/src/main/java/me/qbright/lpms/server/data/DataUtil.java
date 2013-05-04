@@ -9,6 +9,7 @@ import me.qbright.lpms.server.dataimpl.JavaEnvironmentDateImpl;
 import me.qbright.lpms.server.dataimpl.NetInfoDataImpl;
 import me.qbright.lpms.server.dataimpl.GeneralInfoDataImpl;
 import me.qbright.lpms.server.dataimpl.JavaEnvironmentDateImpl;
+import me.qbright.lpms.server.dataimpl.ProcInfoDataImpl;
 
 /**
  * @author QBRIGHT
@@ -19,7 +20,7 @@ public class DataUtil {
 	public static final JavaEnvironmentData JAVA_ENVIRONMENT_DATA = new JavaEnvironmentDateImpl();
 	public static final FileSystemInfoData FILESYSTEM_INFO_DATA = new FileSystemInfoDataImpl();
 	public static final NetInfoData NET_INFO_DATA = new NetInfoDataImpl();
-
+	public static final ProcInfoData PROC_INFO_DATA = new ProcInfoDataImpl();
 	private static Logger log = Logger.getLogger(DataUtil.class);
 
 	private static long UNIT_GB = 1024 * 1024 * 1024;
