@@ -59,9 +59,7 @@ public enum GeneralInfoMonitor {
 	},REAL_MEMORY("real_memory",Map.class){
 		@Override
 		public String getInfo() {
-			ObjectMapper om = new ObjectMapper();
 			Map<String, String> map = new HashMap<String, String>();
-			
 			map.put("total", generalInfoData.realMemoryTotal());
 			map.put("used", generalInfoData.realMemoryUsed());
 			try {
@@ -75,7 +73,6 @@ public enum GeneralInfoMonitor {
 	},SWAP_MEMORY("swap_memory",Map.class){
 		@Override
 		public String getInfo() {
-			ObjectMapper om = new ObjectMapper();
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("total", generalInfoData.swapMemoryTotal());
 			map.put("used", generalInfoData.swapMemoryUsed());
@@ -90,7 +87,6 @@ public enum GeneralInfoMonitor {
 	},LOCAL_DISK("local_disk",Map.class){
 		@Override
 		public String getInfo() {
-			ObjectMapper om = new ObjectMapper();
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("total", generalInfoData.localDiskTotal());
 			map.put("used", generalInfoData.localDiskUsed());
@@ -110,6 +106,8 @@ public enum GeneralInfoMonitor {
 	private String name;
 	private Class<?> returnType;
 
+	private static ObjectMapper om = new ObjectMapper();
+	
 	private GeneralInfoMonitor(String name,Class<?> returnType) {
 		this.name = name;
 		this.returnType = returnType;
