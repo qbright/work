@@ -11,11 +11,7 @@ public class Sort {
 	private String order;
 	private String orderBy;
 
-	/**
-	 * 
-	 */
 	public Sort() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Sort(String orderBy, String order) {
@@ -38,6 +34,5 @@ public class Sort {
 	public void setOrderBy(String orderBy) {
 		this.orderBy = orderBy;
 	}
-
 
 }

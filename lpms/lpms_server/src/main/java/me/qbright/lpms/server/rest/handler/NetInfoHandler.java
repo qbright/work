@@ -1,7 +1,3 @@
-/**
- * @author qbright
- * 2013-4-30
- */
 package me.qbright.lpms.server.rest.handler;
 
 import java.io.IOException;
@@ -9,10 +5,7 @@ import java.io.IOException;
 import me.qbright.lpms.server.rest.RequestHandler;
 import me.qbright.lpms.server.service.NetInfoService;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 

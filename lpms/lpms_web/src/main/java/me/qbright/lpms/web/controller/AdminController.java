@@ -100,8 +100,5 @@ public class AdminController {
 		userManagerService.updatePassword(user);
 		return true;
 	}
-	public void setUserManagerService(UserManagerService userManagerService) {
-		this.userManagerService = userManagerService;
-	}
 
 }

@@ -7,8 +7,6 @@ import me.qbright.lpms.server.dataimpl.FileSystemInfoDataImpl;
 import me.qbright.lpms.server.dataimpl.GeneralInfoDataImpl;
 import me.qbright.lpms.server.dataimpl.JavaEnvironmentDateImpl;
 import me.qbright.lpms.server.dataimpl.NetInfoDataImpl;
-import me.qbright.lpms.server.dataimpl.GeneralInfoDataImpl;
-import me.qbright.lpms.server.dataimpl.JavaEnvironmentDateImpl;
 import me.qbright.lpms.server.dataimpl.ProcInfoDataImpl;
 
 /**

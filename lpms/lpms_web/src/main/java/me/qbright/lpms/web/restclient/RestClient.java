@@ -1,7 +1,3 @@
-/**
- * @author qbright
- * 2013-4-14
- */
 package me.qbright.lpms.web.restclient;
 
 import java.io.IOException;
@@ -99,5 +95,20 @@ public class RestClient {
 				.append(serverMachine.getConnection_ip()).append(DOT)
 				.append(serverMachine.getConnection_port())
 				.append(monitorUtil.getPath()).toString();
+	}
+	
+	public static void main(String[] args) {
+		ServerMachine serverMachine = new ServerMachine();
+		
+		serverMachine.setConnection_ip("127.0.0.1");
+		serverMachine.setConnection_port("8081");
+		
+		Map<String, Object> map = getRestResponseAsMap(MonitorUtil.GENERAL_INFO, serverMachine);
+		
+		for(String s : map.keySet()){
+			System.out.println(s + " : " + map.get(s));
+		}
+		
+		
 	}
 }

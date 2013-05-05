@@ -15,20 +15,16 @@ import org.restlet.routing.Filter;
  */
 public class AuthorizedBlock extends Filter{
 	
-	private static Logger logger = Logger.getLogger(AuthorizedBlock.class);
+	//private static Logger logger = Logger.getLogger(AuthorizedBlock.class);
 	
 	
 	
-	/**
-	 * 
-	 */
+
 	public AuthorizedBlock(Context context) {
 		// TODO Auto-generated constructor stub
 		setContext(context);
 	}
-	/* (non-Javadoc)
-	 * @see org.restlet.routing.Filter#beforeHandle(org.restlet.Request, org.restlet.Response)
-	 */
+
 	@Override
 	protected int beforeHandle(Request request, Response response) {
 		// TODO Auto-generated method stub
@@ -42,9 +38,7 @@ public class AuthorizedBlock extends Filter{
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.restlet.routing.Filter#setNext(org.restlet.Restlet)
-	 */
+
 	@Override
 	public void setNext(Restlet next) {
 		// TODO Auto-generated method stub

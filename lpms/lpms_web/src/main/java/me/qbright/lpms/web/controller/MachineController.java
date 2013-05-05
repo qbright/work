@@ -21,8 +21,8 @@ public class MachineController {
 	private MonitorService monitorService;
 	@RequestMapping("/generalInfo")
 	public String generalInfo(ServerMachine serverMachine,Model model) {
-		Map<String, String> generalInfo = monitorService.getGeneralInfo(serverMachineManagerService.getMachine(serverMachine));
+		Map<String, Object> generalInfo = monitorService.getGeneralInfo(serverMachineManagerService.getMachine(serverMachine));
 		model.addAllAttributes(generalInfo);
-		return "machine_generInfo";
+		return "machine_generalInfo";
 	}
 }

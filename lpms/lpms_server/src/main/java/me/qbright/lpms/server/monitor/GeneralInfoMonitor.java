@@ -51,7 +51,7 @@ public enum GeneralInfoMonitor {
 		public String getInfo() {
 			return generalInfoData.runningProvesses();
 		}
-	},CPU_USAGE("cpu_usagea",String.class){
+	},CPU_USAGE("cpu_usage",String.class){
 		@Override
 		public String getInfo() {
 			return generalInfoData.cpuUsage();

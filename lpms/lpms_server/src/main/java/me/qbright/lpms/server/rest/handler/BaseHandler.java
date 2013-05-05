@@ -3,7 +3,6 @@ package me.qbright.lpms.server.rest.handler;
 
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 
 /**

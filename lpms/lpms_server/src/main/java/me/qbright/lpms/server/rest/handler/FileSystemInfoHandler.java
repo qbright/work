@@ -1,7 +1,3 @@
-/**
- * @author qbright
- * 2013-4-25
- */
 package me.qbright.lpms.server.rest.handler;
 
 import java.io.IOException;
@@ -9,7 +5,6 @@ import java.io.IOException;
 import me.qbright.lpms.server.rest.RequestHandler;
 import me.qbright.lpms.server.service.FileSystemInfoService;
 
-import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 

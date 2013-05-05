@@ -1,7 +1,3 @@
-/**
- * @author qbright
- * 2013-4-30
- */
 package me.qbright.lpms.server.dataimpl;
 
 import java.util.ArrayList;

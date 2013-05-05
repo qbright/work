@@ -25,11 +25,7 @@ public class TestServiceImpl implements TestService {
 	private ServerMachineDao serverMachineDao;
 
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see me.qbright.lpms.web.service.TestService#testService()
-	 */
+
 	@Override
 	public void testService() {
 		// TODO Auto-generated method stub

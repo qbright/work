@@ -13,20 +13,14 @@ import org.restlet.routing.Router;
  */
 public class RootRestlet extends Application{
 
-	/* (non-Javadoc)
-	 * @see org.restlet.Application#createInboundRoot()
-	 */
+
 	@Override
 	public Restlet createInboundRoot() {
 			Router router = new Router(getContext());
 			RequestHandlerRoot root = new RequestHandlerRoot();
 			AuthorizedBlock authorizedBlock = new AuthorizedBlock(getContext());
 			authorizedBlock.setNext(root);
-			
 			router.attach("",authorizedBlock, Router.MODE_BEST_MATCH);
-			
-		
-		// TODO Auto-generated method stub
 		return  router;
 	}
 

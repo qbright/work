@@ -53,6 +53,10 @@
 			src="static/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="static/js/lpms.js"></script>
 		<script type="text/javascript" src="static/js/page.js"></script>
+		<c:if test="${user.root == 0 }">
+		<script type="text/javascript" src="static/js/generalInfo.js"></script>
+		
+		</c:if>
 		<script type="text/javascript">
 			<c:choose>
 			<c:when test="${user.root == 1 }">

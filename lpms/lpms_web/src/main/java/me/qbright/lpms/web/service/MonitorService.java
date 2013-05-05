@@ -15,5 +15,5 @@ import org.springframework.stereotype.Service;
 @Service
 @Repository
 public interface MonitorService {
-	Map<String, String> getGeneralInfo(ServerMachine serverMachine);
+	Map<String, Object> getGeneralInfo(ServerMachine serverMachine);
 }

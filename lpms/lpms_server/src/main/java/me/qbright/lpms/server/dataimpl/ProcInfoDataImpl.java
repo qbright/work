@@ -1,7 +1,3 @@
-/**
- * @author qbright
- * 2013-5-4
- */
 package me.qbright.lpms.server.dataimpl;
 
 import java.util.ArrayList;
@@ -12,7 +8,6 @@ import org.hyperic.sigar.ProcCpu;
 import org.hyperic.sigar.ProcMem;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.SigarException;
-import org.hyperic.sigar.cmd.ProcModuleInfo;
 
 import me.qbright.lpms.server.data.DataUtil;
 import me.qbright.lpms.server.data.ProcInfoData;

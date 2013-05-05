@@ -20,9 +20,7 @@ public class User extends IdEntity {
 	private Integer root;
 
 	public static Map<String, String> SORTMAP = new HashMap<String, String>() {
-		/**
-		 * 
-		 */
+	
 		private static final long serialVersionUID = 1L;
 
 		{
@@ -34,9 +32,7 @@ public class User extends IdEntity {
 		}
 	};
 
-	/**
-	 * 
-	 */
+	
 
 	public String getName() {
 		return name;
