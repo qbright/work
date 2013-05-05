@@ -51,7 +51,7 @@ public enum GeneralInfoMonitor {
 		public String getInfo() {
 			return generalInfoData.runningProvesses();
 		}
-	},CPU_USAGE("cpu_usagea",String.class){
+	},CPU_USAGE("cpu_usage",String.class){
 		@Override
 		public String getInfo() {
 			return generalInfoData.cpuUsage();
@@ -62,11 +62,12 @@ public enum GeneralInfoMonitor {
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("total", generalInfoData.realMemoryTotal());
 			map.put("used", generalInfoData.realMemoryUsed());
+			map.put("usedPrecent", generalInfoData.realMemoryUsedPrecent());
 			try {
 				return om.writeValueAsString(map);
 			} catch (IOException e) {
 				e.printStackTrace();
-				return "{\"total \" : \"0 KB \",\"used \" : \"0 KB \"}";
+				return "{\"total \" : \"0 KB \",\"used \" : \"0 KB \",\"usedPrecent\":\"0 %\"}";
 			}
 		}
 		
@@ -76,11 +77,12 @@ public enum GeneralInfoMonitor {
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("total", generalInfoData.swapMemoryTotal());
 			map.put("used", generalInfoData.swapMemoryUsed());
+			map.put("usedPercent", generalInfoData.swapMemoryUsedPrecent());
 			try {
 				return om.writeValueAsString(map);
 			} catch (IOException e) {
 				e.printStackTrace();
-				return "{\"total \" : \"0 KB \",\"used \" : \"0 KB \"}";
+				return "{\"total \" : \"0 KB \",\"used \" : \"0 KB \",\"usedPrecent\":\"0 %\"}";
 			}
 		}
 		
@@ -90,11 +92,12 @@ public enum GeneralInfoMonitor {
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("total", generalInfoData.localDiskTotal());
 			map.put("used", generalInfoData.localDiskUsed());
+			map.put("usedPercent", generalInfoData.localDiskUsedPrecent());
 			try {
 				return om.writeValueAsString(map);
 			} catch (IOException e) {
 				e.printStackTrace();
-				return "{\"total \" : \"0 KB \",\"used \" : \"0 KB \"}";
+				return "{\"total \" : \"0 KB \",\"used \" : \"0 KB \",\"usedPrecent\":\"0 %\"}";
 			}
 		}
 		

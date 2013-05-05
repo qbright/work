@@ -19,7 +19,7 @@ public class JavaEnvironmentHandler extends ServerResource implements
 	private static JavaEnvironmentService javaEnvironmentService = new JavaEnvironmentService();
 
 	@Override
-	@Post
+	@Get
 	public String getContent() {
 		try {
 			return om.writeValueAsString(javaEnvironmentService.getJavaEvn());

@@ -24,12 +24,8 @@ public class Page<T> {
 
 	private Map<String, String> sortMap;
 
-	/**
-	 * 
-	 */
 	public Page(PageRequest request, long total, List<T> content,
 			Map<String, String> sortMap) {
-		// TODO Auto-generated constructor stub
 		this.total = total;
 		this.pageSize = request.getPageSize();
 		this.pageNum = request.getPageNum();
@@ -171,7 +167,6 @@ public class Page<T> {
 	public void setTotalPages(int totalPages) {
 		this.totalPages = totalPages;
 	}
-
 
 	public boolean getIsEmpty() {
 		return this.isEmpty;

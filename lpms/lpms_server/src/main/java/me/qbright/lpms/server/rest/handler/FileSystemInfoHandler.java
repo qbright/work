@@ -1,7 +1,3 @@
-/**
- * @author qbright
- * 2013-4-25
- */
 package me.qbright.lpms.server.rest.handler;
 
 import java.io.IOException;
@@ -23,7 +19,7 @@ public class FileSystemInfoHandler extends ServerResource implements
 	private FileSystemInfoService fileSystemInfoService = new FileSystemInfoService();
 
 	@Override
-	@Post
+	@Get
 	public String getContent() {
 
 		try {

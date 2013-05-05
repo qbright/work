@@ -19,10 +19,13 @@ function getContent(url) {
 function resetMenu(index, parentId) {
 	var i = 1;
 	$("#" + parentId + " > li").each(function() {
+		
 		if (index == i) {
 			$(this).addClass("active");
+			$(this).find("i").addClass("icon-white");
 		} else {
 			$(this).removeClass("active");
+			$(this).find("i").removeClass("icon-white");
 		}
 		i++;
 
@@ -320,11 +323,11 @@ function getDetail(machineId) {
  * @param type
  */
 function getMachineDetail(type){
-	var index = 1;
+	var index = 2;
 	var url = "";
 	switch (type) {
 	case "generalInfo":
-		url = "/machine/generalInfo";
+		url = "machine/generalInfo";
 		break;
 
 	default:
@@ -338,7 +341,7 @@ function getDetailContent(url){
 	var machineId = $("#machineId").val();
 	$.ajax({
 		url : url,
-		data : "machineId=" + machineId,
+		data : "id=" + machineId,
 		cache : false,
 		type : "GET",
 		dataType : "html",

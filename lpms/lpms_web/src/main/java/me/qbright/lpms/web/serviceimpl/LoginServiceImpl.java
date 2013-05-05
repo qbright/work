@@ -17,16 +17,9 @@ public class LoginServiceImpl implements LoginService {
 
 	@Autowired
 	private UserDao userDao;
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * me.qbright.lpms.web.service.LoginService#checkLogin(java.lang.String,
-	 * java.lang.String)
-	 */
+
 	@Override
 	public User checkLogin(User user) {
-		// TODO Auto-generated method stub
 		return userDao.checkLogin(user);
 	}
 

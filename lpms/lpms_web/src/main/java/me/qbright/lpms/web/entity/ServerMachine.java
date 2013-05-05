@@ -19,9 +19,7 @@ public class ServerMachine extends IdEntity {
     private String password;
 
 	public static Map<String, String> SORTMAP = new HashMap<String, String>() {
-		/**
-		 * 
-		 */
+	
 		private static final long serialVersionUID = 1L;
 
 		{

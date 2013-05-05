@@ -15,7 +15,7 @@ public class GeneralInfoHandler extends ServerResource implements BaseHandler {
 	private GeneralInfoService generalInfoService = new GeneralInfoService();
 
 	@Override
-	@Post
+	@Get
 	public String getContent() {
 		try {
 			return om.writeValueAsString(generalInfoService.getGeneralInfo());

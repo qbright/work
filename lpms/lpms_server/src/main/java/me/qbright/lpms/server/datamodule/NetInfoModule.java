@@ -37,6 +37,7 @@ public class NetInfoModule {
 
 	private String txDropped;
 
+	@SuppressWarnings("unused")
 	private Boolean isNotPackets;
 
 	/**
@@ -257,5 +258,6 @@ public class NetInfoModule {
 	public void setNetMask(String netMask) {
 		this.netMask = netMask;
 	}
+	
 	
 }

@@ -1,14 +1,8 @@
-/**
- * @author qbright
- * 2013-4-24
- */
 package me.qbright.lpms.server.monitor;
 
 import java.io.IOException;
 import java.util.List;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import me.qbright.lpms.server.data.DataUtil;

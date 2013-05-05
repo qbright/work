@@ -36,7 +36,6 @@ public class RestletServer {
 		try {
 			component.start();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			logger.error("faile to boot the server", e);
 		}
 	}

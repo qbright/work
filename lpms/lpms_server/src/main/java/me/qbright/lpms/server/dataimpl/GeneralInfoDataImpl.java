@@ -156,14 +156,7 @@ public class GeneralInfoDataImpl implements GeneralInfoData {
 	public String localDiskTotal() {
 		long total = 0;
 		try {
-			FileSystem[] fs = sigar.getFileSystemList();
-			for (FileSystem fs_ : fs) {
-				if (fs_.getTypeName().equals("local")) {
-					FileSystemUsage fsu = sigar.getFileSystemUsage(fs_
-							.getDirName());
-					total += (fsu.getTotal() * 1024);
-				}
-			}
+			total = getLocalDiskTotal(sigar.getFileSystemList());
 			return DataUtil.changeCapacity(total, UNIT.AUTO);
 		} catch (SigarException e) {
 			log.error("获取硬盘数据失败", e);
@@ -175,21 +168,38 @@ public class GeneralInfoDataImpl implements GeneralInfoData {
 	public String localDiskUsed() {
 		long used = 0;
 		try {
-			FileSystem[] fs = sigar.getFileSystemList();
-			for (FileSystem fs_ : fs) {
-				if (fs_.getTypeName().equals("local")) {
-					FileSystemUsage fsu = sigar.getFileSystemUsage(fs_
-							.getDirName());
-					used += (fsu.getUsed() * 1024);
-				}
-			}
+			 used = getLocalDiskUsed(sigar.getFileSystemList());
 			return DataUtil.changeCapacity(used, UNIT.AUTO);
 		} catch (SigarException e) {
 			log.error("获取硬盘数据失败", e);
 			return "0 KB";
 		}
 	}
-
+	
+	private Long getLocalDiskUsed(FileSystem[] fs) throws SigarException{
+		long used = 0;
+		for (FileSystem fs_ : fs) {
+			if (fs_.getTypeName().equals("local")) {
+				FileSystemUsage fsu = sigar.getFileSystemUsage(fs_
+						.getDirName());
+				used += (fsu.getUsed() * 1024);
+			}
+		}
+		return used;
+	}
+	
+	private Long getLocalDiskTotal(FileSystem[] fs) throws SigarException{
+		long total = 0;
+		for (FileSystem fs_ : fs) {
+			if (fs_.getTypeName().equals("local")) {
+				FileSystemUsage fsu = sigar.getFileSystemUsage(fs_
+						.getDirName());
+				total += (fsu.getTotal() * 1024);
+			}
+		}
+		return total;
+	}
+	
 	@Override
 	public String cpuUsage() {
 		Cpu cpu;
@@ -217,11 +227,51 @@ public class GeneralInfoDataImpl implements GeneralInfoData {
 
 	public static String getUptime(long uptime) {
 		StringBuffer sb = new StringBuffer();
-		sb.append(uptime / 86400).append(" days ")
-				.append((uptime % 86400) / 3600).append(" hours ")
-				.append(((uptime % 86400) % 3600) / 60).append(" minutes ")
-				.append((((uptime % 86400) % 3600) % 60)).append(" seconds");
+		sb.append(uptime / 86400).append(" d ")
+				.append((uptime % 86400) / 3600).append(" h ")
+				.append(((uptime % 86400) % 3600) / 60).append(" m ")
+				.append((((uptime % 86400) % 3600) % 60)).append(" s");
 		return sb.toString();
+	}
+
+	@Override
+	public String localDiskUsedPrecent() {
+		FileSystem[] fs;
+		try {
+			fs = sigar.getFileSystemList();
+			long total = getLocalDiskTotal(fs);
+			long used = getLocalDiskUsed(fs);
+			return DataUtil.getPercent(used, total, 2);
+		} catch (SigarException e) {
+			log.error("获取硬盘使用百分比失败",e);
+			return "0 %";
+		}
+	}
+
+	@Override
+	public String swapMemoryUsedPrecent() {
+		try {
+			Swap swap = sigar.getSwap();
+			long total = swap.getTotal();
+			long used = swap.getUsed();
+			return DataUtil.getPercent(used, total, 2);
+		} catch (SigarException e) {
+			log.error("获取交换区使用百分比失败",e);
+			return "0 %";
+		}
+	}
+
+	@Override
+	public String realMemoryUsedPrecent() {
+		try {
+			Mem mem = sigar.getMem();
+			long total = mem.getTotal();
+			long used = mem.getUsed();
+			return DataUtil.getPercent(used, total, 2);
+		} catch (SigarException e) {
+			log.error("获取物理内存使用百分比失败",e);
+			return "0 %";
+		}
 	}
 
 }

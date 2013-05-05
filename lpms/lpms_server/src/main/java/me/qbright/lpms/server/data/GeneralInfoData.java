@@ -109,4 +109,25 @@ public interface GeneralInfoData {
 	 * @return
 	 */
 	String localDiskUsed();
+	
+	
+	/**
+	 * 本地硬盘使用百分比
+	 * @return
+	 */
+	String localDiskUsedPrecent();
+	
+	
+	/**
+	 * 交换区内存使用百分比
+	 * @return
+	 */
+	String swapMemoryUsedPrecent();
+	
+	
+	/**
+	 * 物理内存使用百分比
+	 * @return
+	 */
+	String realMemoryUsedPrecent();
 }

@@ -96,8 +96,5 @@ public class UserController {
 				.getMachine(serverMachine));
 		return "user_update_machine";
 	}
-	public void setServerMachineManagerService(
-			ServerMachineManagerService serverMachineManagerService) {
-		this.serverMachineManagerService = serverMachineManagerService;
-	}
+	
 }

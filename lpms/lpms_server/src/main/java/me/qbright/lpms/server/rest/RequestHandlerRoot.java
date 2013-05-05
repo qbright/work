@@ -13,12 +13,9 @@ import org.restlet.routing.Router;
  */
 public class RequestHandlerRoot extends Application{
 
-	/* (non-Javadoc)
-	 * @see org.restlet.Application#createInboundRoot()
-	 */
+
 	@Override
 	public Restlet createInboundRoot() {
-		// TODO Auto-generated method stub
 		Router router = new Router(getContext());
 		router = RestletServer.bindServerResource(router, ConfigCommon.getKeyString("PACKAGE_PATH"));
 		return router; 
