@@ -13,6 +13,7 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.restlet.resource.Get;
+import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
 /**
@@ -24,7 +25,7 @@ public class NetInfoHandler extends ServerResource implements BaseHandler {
 	private static NetInfoService netInfoService = new NetInfoService();
 
 	@Override
-	@Get("json")
+	@Post
 	public String getContent() {
 		ObjectMapper om = new ObjectMapper();
 		try {

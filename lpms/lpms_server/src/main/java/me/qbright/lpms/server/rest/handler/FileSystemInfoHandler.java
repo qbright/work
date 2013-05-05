@@ -10,6 +10,7 @@ import me.qbright.lpms.server.rest.RequestHandler;
 import me.qbright.lpms.server.service.FileSystemInfoService;
 
 import org.restlet.resource.Get;
+import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
 /**
@@ -22,7 +23,7 @@ public class FileSystemInfoHandler extends ServerResource implements
 	private FileSystemInfoService fileSystemInfoService = new FileSystemInfoService();
 
 	@Override
-	@Get("json")
+	@Post
 	public String getContent() {
 
 		try {

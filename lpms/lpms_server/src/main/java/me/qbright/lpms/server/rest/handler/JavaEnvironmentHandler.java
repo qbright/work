@@ -6,6 +6,7 @@ import me.qbright.lpms.server.rest.RequestHandler;
 import me.qbright.lpms.server.service.JavaEnvironmentService;
 
 import org.restlet.resource.Get;
+import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
 /**
@@ -18,7 +19,7 @@ public class JavaEnvironmentHandler extends ServerResource implements
 	private static JavaEnvironmentService javaEnvironmentService = new JavaEnvironmentService();
 
 	@Override
-	@Get("json")
+	@Post
 	public String getContent() {
 		try {
 			return om.writeValueAsString(javaEnvironmentService.getJavaEvn());

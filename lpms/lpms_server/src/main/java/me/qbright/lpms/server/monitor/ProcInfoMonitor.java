@@ -1,7 +1,3 @@
-/**
- * @author qbright
- * 2013-5-4
- */
 package me.qbright.lpms.server.monitor;
 
 import java.io.IOException;

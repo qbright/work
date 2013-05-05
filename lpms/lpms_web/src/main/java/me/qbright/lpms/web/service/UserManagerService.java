@@ -30,4 +30,5 @@ public interface UserManagerService {
 	void updatePassword(User user);
 	
 	void addMachine(Long id);
+	
 }

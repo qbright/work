@@ -16,20 +16,13 @@ import org.springframework.stereotype.Component;
 
 @Component("serverMachineManagerService")
 public class ServerMachineManagerServiceImpl implements
-		ServerMachineManagerService {
+		ServerMachineManagerService{
 	@Autowired
 	private ServerMachineDao serverMachineDao;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * me.qbright.lpms.web.service.ServerMachineManagerService#saveMachine(me
-	 * .qbright.lpms.web.entity.ServerMachine)
-	 */
+
 	@Override
 	public void saveMachine(ServerMachine serverMachine) {
-		// TODO Auto
 		serverMachineDao.save(serverMachine);
 	}
 
@@ -37,16 +30,9 @@ public class ServerMachineManagerServiceImpl implements
 		this.serverMachineDao = serverMachineDao;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * me.qbright.lpms.web.service.ServerMachineManagerService#checkUnique(me
-	 * .qbright.lpms.web.entity.ServerMachine)
-	 */
+
 	@Override
 	public boolean checkUnique(ServerMachine serverMachine) {
-		// TODO Auto-generated method stub
 
 		if (serverMachineDao.getByName(serverMachine.getMachineName()) == null) {
 			return true;
@@ -55,16 +41,9 @@ public class ServerMachineManagerServiceImpl implements
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * me.qbright.lpms.web.service.ServerMachineManagerService#listByPage(me
-	 * .qbright.lpms.web.common.PageRequest)
-	 */
+
 	@Override
 	public Page<ServerMachine> listByPage(PageRequest pageRequest, Long userId) {
-		// TODO Auto-generated method stub
 		Page<ServerMachine> page = new Page<ServerMachine>(pageRequest,
 				serverMachineDao.getTotalNum(),
 				serverMachineDao.getByPageUserId(
@@ -73,43 +52,27 @@ public class ServerMachineManagerServiceImpl implements
 		return page;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * me.qbright.lpms.web.service.ServerMachineManagerService#deleteMachine
-	 * (me.qbright.lpms.web.entity.ServerMachine)
-	 */
+
 	@Override
 	public void deleteMachine(ServerMachine serverMachine) {
-		// TODO Auto-generated method stub
 		serverMachineDao.delete(serverMachine.getId());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * me.qbright.lpms.web.service.ServerMachineManagerService#getMachine(me
-	 * .qbright.lpms.web.entity.ServerMachine)
-	 */
+
 	@Override
 	public ServerMachine getMachine(ServerMachine serverMachine) {
-		// TODO Auto-generated method stub
 		return serverMachineDao.getById(serverMachine.getId());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * me.qbright.lpms.web.service.ServerMachineManagerService#updateMachine
-	 * (me.qbright.lpms.web.entity.ServerMachine)
-	 */
 	@Override
 	public void updateMachine(ServerMachine serverMachine) {
-		// TODO Auto-generated method stub
 		serverMachineDao.update(serverMachine);
+	}
+	
+	@Override
+	public boolean checkAlive(Long id) {
+		//TODO check Alive
+		return true;
 	}
 
 }
