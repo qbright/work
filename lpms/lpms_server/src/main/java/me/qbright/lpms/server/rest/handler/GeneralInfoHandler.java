@@ -16,13 +16,14 @@ public class GeneralInfoHandler extends ServerResource implements BaseHandler {
 	@Override
 	@Get
 	public String getContent() {
-		try {
+	/*	try {
 			return om.writeValueAsString(generalInfoService.getGeneralInfo());
 
 		} catch (Exception e) {
 			log.error("信息发送失败", e);
 			return null;
-		}
+		}*/
+		return null;
 	}
 
 }

@@ -16,8 +16,8 @@ import me.qbright.lpms.server.rest.RootRestlet;
 public class Main {
 	private static Logger log = Logger.getLogger(Main.class);
 	public static void main(String[] args)  {
-		//CopyFileUtil.copeFileByJar("sigar-lib", "sigar-lib");//jar包环境
-		System.setProperty("java.library.path", "target/classes/sigar-lib");//dev环境
+		CopyFileUtil.copeFileByJar("sigar-lib", "sigar-lib");//jar包环境
+		System.setProperty("java.library.path", "sigar-lib");//dev环境
 		
 		System.setProperty("org.restlet.engine.loggerFacadeClass", "org.restlet.ext.slf4j.Slf4jLoggerFacade"); 
 		
@@ -27,4 +27,10 @@ public class Main {
 		restletServer.start();
 	
 	}
+	public static boolean initAuthorized(){
+		
+		return false;
+	}
+	
+	
 }
