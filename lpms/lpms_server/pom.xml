@@ -16,6 +16,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.fusesource</groupId>
@@ -38,19 +40,32 @@
 			<artifactId>restlet</artifactId>
 			<version>2.1.2</version>
 		</dependency>
-
-
+	
+		<dependency>
+			<groupId>org.restlet</groupId>
+			<artifactId>ext.slf4j</artifactId>
+			<version>2.1.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+		
+		
 		<dependency>
 			<groupId>me.qbright</groupId>
 			<artifactId>lpms_common</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
-		<dependency>
+		 <dependency>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-assembly-plugin</artifactId>
 			<version>2.4</version>
 			<type>maven-plugin</type>
-		</dependency>
+			<scope>compile</scope>
+		</dependency> 
 	</dependencies>
 	<build>
 		<finalName>lpms_server</finalName>

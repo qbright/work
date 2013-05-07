@@ -20,13 +20,11 @@ public class AuthorizedBlock extends Filter{
 	
 
 	public AuthorizedBlock(Context context) {
-		// TODO Auto-generated constructor stub
 		setContext(context);
 	}
 
 	@Override
 	protected int beforeHandle(Request request, Response response) {
-		// TODO Auto-generated method stub
 		int result = CONTINUE;
 		
 		Form form = new Form(request.getEntity());
@@ -40,7 +38,6 @@ public class AuthorizedBlock extends Filter{
 
 	@Override
 	public void setNext(Restlet next) {
-		// TODO Auto-generated method stub
 		super.setNext(next);
 	}
 	

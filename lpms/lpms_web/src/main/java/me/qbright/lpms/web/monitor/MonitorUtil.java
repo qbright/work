@@ -9,7 +9,10 @@ import java.util.Map;
  */
 public enum MonitorUtil {
 	GENERAL_INFO("/lpms_server/generalInfo",Map.class),
-	FILESYSTEM_INFO("/lpms_server/fileSystemInfo",List.class);
+	FILESYSTEM_INFO("/lpms_server/fileSystemInfo",List.class),
+	JAVA_ENVIRONMENT("/lpms_server/javaEnvironment",Map.class),
+	NET_INFO("/lpms_server/netInfo",List.class),
+	PROC_INFO("/lpms_server/procInfo",List.class);
 	
 	private String path;
 	
