@@ -15,7 +15,7 @@
 			<div class="span11">
 				<div class="navbar">
 					<div class="navbar-inner">
-						<a class="brand" href="#">Title</a> <input type="hidden"
+						<a class="brand" href="#">用户列表</a> <input type="hidden"
 							id="page_url" value="admin/manager_user"> <input
 							type="hidden" id="page_container" value="main_container">
 						<tags:sort />

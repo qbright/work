@@ -4,8 +4,10 @@ package me.qbright.lpms.server.datamodule;
  * @author QBRIGHT
  * @date 2013-5-4
  */
-public class ProcInfoModule {
+public class ProcInfoModule implements Comparable<ProcInfoModule>{
 	private String pid;
+	
+	private String procName;
 	
 	private String cpuPercent;
 
@@ -135,6 +137,22 @@ public class ProcInfoModule {
 
 	public void setPid(String pid) {
 		this.pid = pid;
+	}
+	
+	
+	public String getProcName() {
+		return procName;
+	}
+
+
+	public void setProcName(String procName) {
+		this.procName = procName;
+	}
+
+
+	@Override
+	public int compareTo(ProcInfoModule procInfoModule) {
+		return -cpuPercent.compareTo(procInfoModule.getCpuPercent());
 	}
 
 }

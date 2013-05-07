@@ -6,6 +6,7 @@
 package me.qbright.lpms.web.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,16 +34,15 @@ public class UserController {
 
 	@Autowired
 	private UserManagerService userManagerService;
+
 	@RequestMapping(value = "/manager_machine")
 	public String getMechine(PageRequest pageRequest, Long id,
 			HttpServletRequest request, HttpServletResponse response,
 			Model model) {
 		User user = (User) request.getSession().getAttribute("user");
-		user = new User();//
-		user.setId(66L); // test
 
-		Page<ServerMachine> page = serverMachineManagerService
-				.listByPage(pageRequest, user.getId());
+		Page<ServerMachine> page = serverMachineManagerService.listByPage(
+				pageRequest, user.getId());
 		model.addAttribute(page);
 		return "user_manager_serverMachine";
 	}
@@ -50,11 +50,10 @@ public class UserController {
 	@RequestMapping(value = "/add")
 	@ResponseBody
 	public boolean saveMachine(ServerMachine serverMachine,
-			HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+			HttpServletRequest request, HttpServletResponse response)
+			throws UnsupportedEncodingException {
 
 		User user = (User) request.getSession().getAttribute("user");
-		user = new User();//
-		user.setId(66L); // test
 		serverMachine.setPassword(EncodeCommon.digester(serverMachine
 				.getPassword()));
 		serverMachine.setBelongTo(user.getId());
@@ -83,18 +82,26 @@ public class UserController {
 		return true;
 
 	}
-	
-	@RequestMapping(value="/checkAlive")
+
+	@RequestMapping(value = "/checkAlive")
 	@ResponseBody
-	public boolean checkAlive(Long id){
-		return serverMachineManagerService.checkAlive(id);
+	public boolean checkAlive(ServerMachine serverMachine) {
+		ServerMachine machine = serverMachineManagerService
+				.getMachine(serverMachine);
+		if (serverMachineManagerService.checkAlive(machine)) {
+			machine.setLast_login(new Date());
+			serverMachineManagerService.updateMachine(machine);
+			return true;
+		} else {
+			return false;
+		}
 	}
-	
+
 	@RequestMapping(value = "/prepareUpdate")
 	public String prepareUpdate(ServerMachine serverMachine, Model model) {
 		model.addAttribute(serverMachineManagerService
 				.getMachine(serverMachine));
 		return "user_update_machine";
 	}
-	
+
 }

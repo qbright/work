@@ -37,7 +37,7 @@
 	</insert>
 	<update id="update" flushCache="true" parameterType="ServerMachine">
 		update server_machine set machineName=#{machineName} , connection_ip=#{connection_ip}, 
-		connection_port=#{connection_port}, system=#{system} where id=#{id}
+		connection_port=#{connection_port}, system=#{system},last_login=#{last_login} where id=#{id}
 	</update>
 	<delete id="delete" parameterType="long">
 		delete from server_machine where

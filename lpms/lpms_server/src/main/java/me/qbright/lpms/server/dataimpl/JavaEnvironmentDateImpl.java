@@ -54,5 +54,11 @@ public class JavaEnvironmentDateImpl implements JavaEnvironmentData {
 		long used =   total - runtime.freeMemory();
 		return DataUtil.getPercent(used, total, 2);
 	}
+	
+
+	@Override
+	public String javaVendor() {
+		return props.getProperty("java.vendor");
+	}
 
 }

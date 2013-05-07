@@ -25,4 +25,5 @@ public interface MonitorService {
 	List<Map<String, Object>> getNetInfo(ServerMachine serverMachine);
 	
 	List<Map<String, Object>> getProcInfo(ServerMachine serverMachine);
+	
 }

@@ -31,4 +31,6 @@ public interface UserManagerService {
 	
 	void addMachine(Long id);
 	
+	void deleteMachine(Long id);
+	
 }

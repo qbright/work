@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import me.qbright.lpms.common.EncodeCommon;
-import me.qbright.lpms.web.common.Page;
 import me.qbright.lpms.web.entity.User;
 import me.qbright.lpms.web.service.LoginService;
 import me.qbright.lpms.web.service.UserManagerService;
@@ -32,31 +31,36 @@ public class LoginController {
 	@Autowired
 	private UserManagerService userManagerService;
 
-	private Page<User> page;
-
 	@RequestMapping
 	public String login(Model model, User user, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		user.setPassword(EncodeCommon.digester(user.getPassword()));
-		user = loginService.checkLogin(user);
-		if (user != null) {
-			request.getSession().setAttribute("user", user);
-			model.addAttribute(user);
+
+		if (checkOnSession(request)) {
 			return "main";
 		} else {
-			request.setAttribute("error", 1);
-			request.getRequestDispatcher("/").forward(request, response);
-			return null;
+			user = loginService.checkLogin(user);
+			if (user != null) {
+				request.getSession().setAttribute("user", user);
+				model.addAttribute(user);
+				return "main";
+			} else {
+				request.setAttribute("error", 1);
+				request.getRequestDispatcher("/").forward(request, response);
+				return null;
+			}
 		}
 
 	}
 
-	public Page<User> getPage() {
-		return page;
-	}
+	private boolean checkOnSession(HttpServletRequest request) {
+		User sessionUser = (User) request.getSession().getAttribute("user");
 
-	public void setPage(Page<User> page) {
-		this.page = page;
+		if (sessionUser != null && loginService.checkLogin(sessionUser) != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

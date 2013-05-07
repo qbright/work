@@ -15,7 +15,7 @@ public class FileSystemModule {
 	private String diskReads;
 	private String diskWrites;
 	private String usedPercent;
-
+	private String freePercent;
 
 	public String getDevName() {
 		return devName;
@@ -114,4 +114,15 @@ public class FileSystemModule {
 		this.usedPercent = usedPercent;
 	}
 
+
+
+	public String getFreePercent() {
+		return freePercent;
+	}
+
+	public void setFreePercent(String freePercent) {
+		this.freePercent = freePercent;
+	}
+	
+	
 }

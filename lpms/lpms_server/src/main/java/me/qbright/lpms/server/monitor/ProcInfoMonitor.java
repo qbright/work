@@ -1,6 +1,7 @@
 package me.qbright.lpms.server.monitor;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -8,16 +9,19 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import me.qbright.lpms.server.data.DataUtil;
 import me.qbright.lpms.server.data.ProcInfoData;
+import me.qbright.lpms.server.datamodule.ProcInfoModule;
 
 /**
  * @author QBRIGHT
  * @date 2013-5-4
  */
 public enum ProcInfoMonitor {
-	PROCINFO_LIST("procinfo_list",List.class){
+	PROCINFO_LIST("procInfo_list",List.class){
 		public String getInfo(){
 			try {
-				return om.writeValueAsString(procInfoData.getProcInfos());
+				List<ProcInfoModule> list = procInfoData.getProcInfos();
+				Collections.sort(list);
+				return om.writeValueAsString(list);
 			} catch ( IOException e) {
 				log.error("进程信息获取失败",e);
 				return "{}";

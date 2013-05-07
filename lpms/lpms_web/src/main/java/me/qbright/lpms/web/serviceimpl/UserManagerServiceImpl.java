@@ -91,5 +91,14 @@ public class UserManagerServiceImpl implements UserManagerService {
 		userdao.updateMachine(user);
 	}
 
+
+	@Override
+	public void deleteMachine(Long id) {
+		User user = userdao.getById(id);
+		user.setManager_num(user.getManager_num() - 1);
+		userdao.updateMachine(user); 
+		
+	}
+
 	
 }

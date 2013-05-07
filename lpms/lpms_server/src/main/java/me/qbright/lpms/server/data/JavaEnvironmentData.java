@@ -51,4 +51,6 @@ public interface JavaEnvironmentData {
 	 * @return
 	 */
 	public String memoryUsedPercent();
+	
+	public String javaVendor();
 }

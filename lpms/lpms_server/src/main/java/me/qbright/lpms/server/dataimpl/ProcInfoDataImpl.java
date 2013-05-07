@@ -1,5 +1,7 @@
 package me.qbright.lpms.server.dataimpl;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,8 +54,7 @@ public class ProcInfoDataImpl implements ProcInfoData {
 		procCpu = sigar.getProcCpu(pid);
 		procMem = sigar.getProcMem(pid);
 		procInfoModule.setPid(String.valueOf(pid));
-		
-		procInfoModule.setCpuPercent(String.valueOf(procCpu.getPercent()));
+		procInfoModule.setCpuPercent(changeRound(procCpu.getPercent()));
 
 		procInfoModule.setCpuTime(getCpuTime(procCpu.getStartTime(),
 				procCpu.getLastTime()));
@@ -84,8 +85,9 @@ public class ProcInfoDataImpl implements ProcInfoData {
 	}
 
 	private String getProcExe(String exe) {
-
-		return exe.substring(exe.lastIndexOf("\\") + 1, exe.length());
+		String separator = (String) System.getProperties()
+				.get("file.separator");// 不同系统文件分隔符不同
+		return exe.substring(exe.lastIndexOf(separator) + 1, exe.length());
 	}
 
 	private String getCpuTime(long startDate, long lastDate) {
@@ -107,6 +109,11 @@ public class ProcInfoDataImpl implements ProcInfoData {
 		} catch (SigarException e) {
 			log.error("获取进程ID失败", e);
 		}
+	}
+
+	private static String changeRound(double a) {
+		NumberFormat doubleFormat = new DecimalFormat("0.000");
+		return doubleFormat.format(a) + "%";
 	}
 
 }

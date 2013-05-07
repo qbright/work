@@ -55,7 +55,8 @@
 		<script type="text/javascript" src="static/js/page.js"></script>
 		<c:if test="${user.root == 0 }">
 		<script type="text/javascript" src="static/js/generalInfo.js"></script>
-		
+		<script type="text/javascript" src="static/js/javaEnvironment.js"></script>
+		<script type="text/javascript" src="static/js/procInfo.js"></script>
 		</c:if>
 		<script type="text/javascript">
 			<c:choose>

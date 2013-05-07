@@ -61,7 +61,7 @@ public enum GeneralInfoMonitor {
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("total", generalInfoData.realMemoryTotal());
 			map.put("used", generalInfoData.realMemoryUsed());
-			map.put("usedPrecent", generalInfoData.realMemoryUsedPrecent());
+			map.put("usedPercent", generalInfoData.realMemoryUsedPrecent());
 			try {
 				return om.writeValueAsString(map);
 			} catch (IOException e) {

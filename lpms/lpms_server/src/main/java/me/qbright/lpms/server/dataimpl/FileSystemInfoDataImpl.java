@@ -55,8 +55,13 @@ public class FileSystemInfoDataImpl implements FileSystemInfoData {
 					sigar.getFileSystemUsage(fs.getDirName()).getUsed() * 1024,
 					UNIT.AUTO));
 			fsm.setTypeName(fs.getTypeName());
-			
-			fsm.setUsedPercent(DataUtil.getPercent(sigar.getFileSystemUsage(fs.getDirName()).getUsePercent(), 1D, 0));
+
+			fsm.setUsedPercent(DataUtil.getPercent(
+					sigar.getFileSystemUsage(fs.getDirName()).getUsePercent(),
+					1D, 0));
+			fsm.setFreePercent(DataUtil.getPercent((1D - sigar
+					.getFileSystemUsage(fs.getDirName()).getUsePercent()), 1D,
+					0));
 			return fsm;
 		} catch (SigarException e) {
 			// TODO Auto-generated catch block

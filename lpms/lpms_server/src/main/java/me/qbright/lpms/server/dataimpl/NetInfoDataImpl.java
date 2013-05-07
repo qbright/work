@@ -30,7 +30,12 @@ public class NetInfoDataImpl implements NetInfoData {
 			if(netInterfaceConfig.getHwaddr() == NetFlags.NULL_HWADDR){
 				continue;
 			}
-			netInfoModules.add(getModule(netInterfaceConfig));
+			
+			NetInfoModule netInfoModule = getModule(netInterfaceConfig);
+			if(!netInfoModule.getIsNotPackets()){
+				netInfoModules.add(netInfoModule);
+			}
+			
 		}
 
 		return netInfoModules;
@@ -41,7 +46,7 @@ public class NetInfoDataImpl implements NetInfoData {
 		netInfoModule.setNetMask(netInterfaceConfig.getNetmask());
 		netInfoModule.setDescription(netInterfaceConfig.getDescription());
 		netInfoModule.setIpAddress(netInterfaceConfig.getAddress());
-		netInfoModule.setMacAdree(netInterfaceConfig.getHwaddr());
+		netInfoModule.setMacAdress(netInterfaceConfig.getHwaddr());
 		netInfoModule.setMtu(String.valueOf(netInterfaceConfig.getMtu()));
 		netInfoModule.setType(netInterfaceConfig.getType());
 

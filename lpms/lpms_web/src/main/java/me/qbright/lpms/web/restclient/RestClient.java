@@ -34,6 +34,7 @@ public class RestClient {
 
 	private static final String PASSWORD = "password";
 
+	@SuppressWarnings("unchecked")
 	public static Map<String, Object> getRestResponseAsMap(
 			MonitorUtil monitorUtil, ServerMachine serverMachine) {
 		ClientResource client = new ClientResource(Method.POST, getUrl(
@@ -46,10 +47,8 @@ public class RestClient {
 			String requestJson = client.post(
 					form.getWebRepresentation().getText()).getText();
 
-			@SuppressWarnings("unchecked")
-			Map<String, Object> responseMap = om.readValue(requestJson,
-					Map.class);
-			return responseMap;
+			 
+			return om.readValue(requestJson,Map.class);
 		} catch (ResourceException e) {
 			log.error("获取系统信息出错   url ：" + getUrl(monitorUtil, serverMachine),
 					e);
@@ -61,7 +60,32 @@ public class RestClient {
 		}
 
 	}
+	
+	public static Boolean getRestResponseAsBoolean(MonitorUtil monitorUtil, ServerMachine serverMachine){
+		ClientResource client = new ClientResource(Method.POST, getUrl(
+				monitorUtil, serverMachine));
+		Form form = new Form();
 
+		form.add(MACHINE_NAME, serverMachine.getMachineName());
+		form.add(PASSWORD, serverMachine.getPassword());
+		try {
+			String requestJson = client.post(
+					form.getWebRepresentation().getText()).getText();
+
+			 
+			return om.readValue(requestJson,Boolean.class);
+		} catch (ResourceException e) {
+			log.error("获取系统信息出错   url ：" + getUrl(monitorUtil, serverMachine),
+					e);
+			return false;
+		} catch (IOException e) {
+			log.error("获取系统信息出错   url ：" + getUrl(monitorUtil, serverMachine),
+					e);
+			return false;
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
 	public static List<Map<String, Object>> getRestResponseAsList(
 			MonitorUtil monitorUtil, ServerMachine serverMachine, String listKey) {
 
@@ -69,10 +93,7 @@ public class RestClient {
 				serverMachine);
 
 		try {
-			@SuppressWarnings("unchecked")
-			List<Map<String, Object>> list = om.readValue(
-					(String) map.get(listKey), List.class);
-			return list;
+			return om.readValue((String) map.get(listKey), List.class);
 		} catch (JsonParseException e) {
 			log.error("获取系统信息出错   url ：" + getUrl(monitorUtil, serverMachine),
 					e);
@@ -103,12 +124,8 @@ public class RestClient {
 		serverMachine.setConnection_ip("127.0.0.1");
 		serverMachine.setConnection_port("8081");
 		
-		Map<String, Object> map = getRestResponseAsMap(MonitorUtil.GENERAL_INFO, serverMachine);
 		
-		for(String s : map.keySet()){
-			System.out.println(s + " : " + map.get(s));
-		}
-		
-		
+		Boolean alive = getRestResponseAsBoolean(MonitorUtil.CHECK_ALIVE, serverMachine);
+		System.out.println(alive);
 	}
 }

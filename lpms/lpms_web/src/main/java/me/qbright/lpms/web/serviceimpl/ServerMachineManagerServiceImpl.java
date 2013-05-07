@@ -1,14 +1,11 @@
-/**
- * @author qbright
- *
- * @date 2013-1-31
- */
 package me.qbright.lpms.web.serviceimpl;
 
 import me.qbright.lpms.web.common.Page;
 import me.qbright.lpms.web.common.PageRequest;
 import me.qbright.lpms.web.dao.ServerMachineDao;
 import me.qbright.lpms.web.entity.ServerMachine;
+import me.qbright.lpms.web.monitor.MonitorUtil;
+import me.qbright.lpms.web.restclient.RestClient;
 import me.qbright.lpms.web.service.ServerMachineManagerService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,9 +67,8 @@ public class ServerMachineManagerServiceImpl implements
 	}
 	
 	@Override
-	public boolean checkAlive(Long id) {
-		//TODO check Alive
-		return true;
+	public boolean checkAlive(ServerMachine serverMachine) {
+		return RestClient.getRestResponseAsBoolean(MonitorUtil.CHECK_ALIVE, serverMachine);
 	}
 
 }

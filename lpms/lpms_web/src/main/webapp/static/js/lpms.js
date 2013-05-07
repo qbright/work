@@ -298,7 +298,7 @@ function changePassword() {
 	});
 }
 
-function getDetail(machineId) {
+function getDetail(machineId,machineName,machineIp) {
 	
 	$.ajax({
 		url : "user/checkAlive",
@@ -307,21 +307,16 @@ function getDetail(machineId) {
 		type : "POST",
 		dataType : "html",
 		success : function(response) {
-			if(response){
-				jump(1, 'main_nav', 'user/machine_detail?id=' + machineId);
+			if(response == "true"){
+				jump(1, 'main_nav', 'user/machine_detail?id=' + machineId + "&machineName=" + machineName + "&machineIp=" + machineIp);
 			}else{
 				alert("服务器无法连接,请检查服务器");
 			}
 		}
 	});
-
 }
 
 
-/**
- * generalInfo
- * @param type
- */
 function getMachineDetail(type){
 	var index = 2;
 	var url = "";
@@ -329,15 +324,28 @@ function getMachineDetail(type){
 	case "generalInfo":
 		url = "machine/generalInfo";
 		break;
-
-	default:
+	case "javaEnvironment":
+		url = "machine/javaEnvironment";
+		index = 3;
+		break;
+	case "procInfo"	:
+		url = "machine/procInfo";
+		index = 4;
+		break;
+	case "netInfo" :
+		url = "machine/netInfo";
+		index = 5;
+		break;
+	case "fileSystemInfo":
+		url = "machine/fileSystemInfo";
+		index = 6;
 		break;
 	}
-	
 	jumpDetail(index, "machine_detail_menu", url);
+	return false;
 }
 
-function getDetailContent(url){
+function getDetailContent(url,index, parentId){
 	var machineId = $("#machineId").val();
 	$.ajax({
 		url : url,
@@ -345,13 +353,20 @@ function getDetailContent(url){
 		cache : false,
 		type : "GET",
 		dataType : "html",
+		beforeSend:function(){
+			$("#machine_detail_container").html("<img  src='static/images/loading.gif' style='margin-left:200px'/>");
+		},
 		success : function(response) {
 			$("#machine_detail_container").html(response);
+			resetMenu(index, parentId);
+		},
+		error:function(){
+			alert("获取信息出错");
 		}
 	});
 }
 
 function jumpDetail(index, parentId, url){
-	getDetailContent(url);
-	resetMenu(index, parentId);
+	getDetailContent(url,index, parentId);
+	
 }

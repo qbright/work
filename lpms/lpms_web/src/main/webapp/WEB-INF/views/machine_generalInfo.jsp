@@ -73,10 +73,14 @@
 	
   <input type="hidden" id="swap_memory_total" value="${swap_memory.total }">
   <input type="hidden" id="swap_memory_used" value="${swap_memory.used }">
+  <input type="hidden" id="swap_memory_usedPercent" value="${swap_memory.usedPercent}">
   <input type="hidden" id="local_disk_total" value="${local_disk.total }">
   <input type="hidden" id="local_disk_used" value="${local_disk.used }">
+   <input type="hidden" id="local_disk_usedPercent" value="${local_disk.usedPercent}">
   <input type="hidden" id="real_memory_total" value="${real_memory.total }">
   <input type="hidden" id="real_memory_used" value="${real_memory.used}">
+  <input type="hidden" id="real_memory_usedPercent" value="${real_memory.usedPercent}">
+     
      
   <script type="text/javascript">
   	$(function(){

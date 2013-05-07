@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>  
 <div class="row well">
 <c:set value="${page.content}" var="content"></c:set>
 <c:choose>
@@ -15,7 +16,7 @@
 			<div class="span11">
 				<div class="navbar">
 					<div class="navbar-inner">
-						<a class="brand" href="#">Title</a> <input type="hidden"
+						<a class="brand" href="#">服务器列表</a> <input type="hidden"
 							id="page_url" value="user/manager_machine"> <input
 							type="hidden" id="page_container" value="main_container">
 						<tags:sort />
@@ -40,10 +41,18 @@
 					<tbody>
 						<c:forEach items="${page.content}" var="machine">
 							<tr >
-								<td  onclick="getDetail(${machine.id})" style="cursor: pointer;">${machine.machineName}</td>
+								<td  onclick="getDetail(${machine.id},'${machine.machineName}','${machine.connection_ip}')" style="cursor: pointer;">${machine.machineName}</td>
 								<td>${machine.connection_ip}</td>
 								<td>${machine.system}</td>
-								<td>${machine.last_login}</td>
+								<td>
+									<span class="label label-info">
+									<c:if test="${empty machine.last_login}">
+										暂未登录过
+									</c:if>
+									
+										<fmt:formatDate value="${machine.last_login}" pattern="yy-MM-dd HH:mm:ss"/>  
+									</span>
+								</td>
 								<td>
 									<div class="btn-group">
 										<button class="btn btn-primary btn-small"

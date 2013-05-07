@@ -12,7 +12,8 @@ public enum MonitorUtil {
 	FILESYSTEM_INFO("/lpms_server/fileSystemInfo",List.class),
 	JAVA_ENVIRONMENT("/lpms_server/javaEnvironment",Map.class),
 	NET_INFO("/lpms_server/netInfo",List.class),
-	PROC_INFO("/lpms_server/procInfo",List.class);
+	PROC_INFO("/lpms_server/procInfo",List.class),
+	CHECK_ALIVE("/lpms_server/checkAlive",Boolean.class);
 	
 	private String path;
 	

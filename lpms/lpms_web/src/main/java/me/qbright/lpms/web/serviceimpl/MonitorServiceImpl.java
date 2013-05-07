@@ -1,8 +1,3 @@
-/**
- * @author qbright
- *
- * @date 2013-2-7
- */
 package me.qbright.lpms.web.serviceimpl;
 
 import java.util.List;
@@ -44,4 +39,5 @@ public class MonitorServiceImpl implements MonitorService {
 		return RestClient.getRestResponseAsList(MonitorUtil.PROC_INFO, serverMachine, "procInfo_list");
 	}
 
+	
 }

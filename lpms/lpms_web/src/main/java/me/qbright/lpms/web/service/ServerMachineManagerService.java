@@ -27,6 +27,6 @@ public interface ServerMachineManagerService {
 
 	void updateMachine(ServerMachine serverMachine);
 
-	boolean checkAlive(Long id);
+	boolean checkAlive(ServerMachine serverMachine);
 
 }

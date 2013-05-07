@@ -30,7 +30,7 @@ public class MachineController {
 	
 	@RequestMapping("/javaEnvironment")
 	public String javaEnvironment(ServerMachine serverMachine,Model model){
-		Map<String, Object> javaEnvironment = monitorService.getGeneralInfo(serverMachineManagerService.getMachine(serverMachine));
+		Map<String, Object> javaEnvironment = monitorService.getJavaEnvironment(serverMachineManagerService.getMachine(serverMachine));
 		model.addAllAttributes(javaEnvironment);
 		return "machine_javaEnvironment";
 	}

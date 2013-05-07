@@ -57,6 +57,14 @@ public enum JavaEnvironmentMonitor {
 			return javaEnv.memoryUsedPercent();
 		}
 		
+	},
+	JAVA_VENDOR("java_vendor",String.class){
+
+		@Override
+		public String getInfo() {
+			return javaEnv.javaVendor();
+		}
+		
 	};
 
 	private String name;

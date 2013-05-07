@@ -1,18 +1,98 @@
-#main_container{
-	padding:70px 0 0 0;
+#main_container {
+	padding: 70px 0 0 0;
 }
 
-.disable{
+.disable {
 	display: none;
 }
-.sort-button{
-	padding:6.5px;
+
+.sort-button {
+	padding: 6.5px;
 }
-.page-dropdown{
-   max-height:350px;
+
+.page-dropdown {
+	max-height: 350px;
 	overflow: auto;
 }
 
-.light-background{
+.light-background {
 	background: white;
+}
+
+.fileSystem_container {
+	width: 100%;
+	height: 125px;
+	/* padding-left: 100px; */
+	background: url('../images/drive_008.png') no-repeat;
+	background-size: 100px 100px;
+}
+
+.fileSystem_container .container1 {
+	width: 120px;
+	height: 129px;
+	float: left;
+	line-height: 220px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.fileSystem_container .container2 {
+	width: 180px;
+	height: 50px;
+	float: left;
+}
+
+.fileSystem_container .container3 {
+	width: 230px;
+	height: 50px;
+	float: left;
+}
+
+.fileSystem_container .container4 {
+	width: 460px;
+	height: 80px;
+	float: left;
+}
+
+.fileSystem_container dl {
+	margin-bottom: 6px;
+}
+
+.netInfo_container {
+	width: 81%;
+	height: 125px;
+	/* padding-left: 100px; */
+	background: url('../images/drive_010.png') no-repeat;
+	background-size: 100px 100px;
+	padding-left: 115px;
+}
+
+.netInfo_title {
+	width: 100%;
+	text-align: center;
+	font-weight: bold;
+	padding-bottom: 10px;
+	border-bottom: 1px #DDDDDD solid;
+}
+
+.netInfo_container .container1 {
+	width:100%; 
+	height: 25px;
+	margin-top: 10px;
+	float: left;
+}
+
+.netInfo_container .container2 {
+	width:50%; 
+	height: 25px;
+	float: left;
+	text-align: left;
+}
+.netInfo_container .container2 dt{
+	width: 106px;
+	text-align: left;
+}
+
+.netInfo_container .container2 dd{
+	margin-left:110px;
 }
