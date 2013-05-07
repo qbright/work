@@ -14,6 +14,7 @@ public class FileSystemModule {
 	private String used;
 	private String diskReads;
 	private String diskWrites;
+	private String usedPercent;
 
 
 	public String getDevName() {
@@ -101,6 +102,16 @@ public class FileSystemModule {
 	
 	public void setDiskWrites(String diskWrites) {
 		this.diskWrites = diskWrites;
+	}
+
+
+	public String getUsedPercent() {
+		return usedPercent;
+	}
+
+
+	public void setUsedPercent(String usedPercent) {
+		this.usedPercent = usedPercent;
 	}
 
 }

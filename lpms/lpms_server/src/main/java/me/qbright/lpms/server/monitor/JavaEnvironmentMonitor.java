@@ -50,6 +50,13 @@ public enum JavaEnvironmentMonitor {
 		public String getInfo() {
 			return javaEnv.javaVmVersion();
 		}
+	},
+	MEMORY_USED_PERCENT("memory_used_percent",String.class){
+		@Override
+		public String getInfo() {
+			return javaEnv.memoryUsedPercent();
+		}
+		
 	};
 
 	private String name;

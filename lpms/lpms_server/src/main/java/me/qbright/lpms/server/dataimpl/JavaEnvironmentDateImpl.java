@@ -48,4 +48,11 @@ public class JavaEnvironmentDateImpl implements JavaEnvironmentData {
 		return props.getProperty("java.vm.version");
 	}
 
+	@Override
+	public String memoryUsedPercent() {
+		long total = runtime.totalMemory();
+		long used =   total - runtime.freeMemory();
+		return DataUtil.getPercent(used, total, 2);
+	}
+
 }

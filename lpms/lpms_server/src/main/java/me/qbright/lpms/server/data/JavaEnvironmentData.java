@@ -46,5 +46,9 @@ public interface JavaEnvironmentData {
 	 */
 	public String javaVmVersion();
 	
-	
+	/**
+	 * java内存使用百分比
+	 * @return
+	 */
+	public String memoryUsedPercent();
 }
