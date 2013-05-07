@@ -31,7 +31,7 @@ public class AuthorizedBlock extends Filter{
 
 		
 
-		System.out.println(form.getFirstValue("machine_name"));
+		//System.out.println(form.getFirstValue("machine_name"));
 		return result;
 	}
 

@@ -15,7 +15,6 @@ import me.qbright.lpms.server.data.GeneralInfoData;
 public enum GeneralInfoMonitor {
 	SYSTEM_HOSTNAME("system_hostname",String.class) {
 		public String getInfo() {
-			System.out.println(generalInfoData);
 			return generalInfoData.systemHostName();
 		}
 	},

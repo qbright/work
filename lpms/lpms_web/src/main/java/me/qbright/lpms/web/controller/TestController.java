@@ -2,10 +2,6 @@ package me.qbright.lpms.web.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import me.qbright.lpms.web.common.Page;
 import me.qbright.lpms.web.common.PageRequest;
@@ -16,19 +12,13 @@ import me.qbright.lpms.web.service.UserManagerService;
 
 import org.restlet.data.Form;
 import org.restlet.data.Method;
-import org.restlet.data.Parameter;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.client.ResponseExtractor;
-import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

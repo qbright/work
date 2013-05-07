@@ -124,13 +124,13 @@ public class PackageScanUtil {
                       logger.info("exclude inner class with name:" + name);
                       continue;
                   }
-                  String classSimpleName = name
+              /*    String classSimpleName = name
                           .substring(name.lastIndexOf('/') + 1);
                   // 判定是否符合过滤条件
                   if (this.filterClassName(classSimpleName)) {
                       String className = name.replace('/', '.');
                       System.out.println(className);
-                  }
+                  }*/
               }
           } catch (IOException e) {
               logger.error("IOException error:", e);
