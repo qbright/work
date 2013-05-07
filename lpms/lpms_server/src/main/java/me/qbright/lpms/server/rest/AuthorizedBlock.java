@@ -1,7 +1,6 @@
 package me.qbright.lpms.server.rest;
 
 
-import org.apache.log4j.Logger;
 import org.restlet.Context;
 import org.restlet.Request;
 import org.restlet.Response;

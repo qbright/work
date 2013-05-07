@@ -24,7 +24,6 @@ public class RestletServer {
 	 * 构造函数 
 	 */
 	public RestletServer(String serverRoot,int port,Restlet rootTarget) {
-		// TODO Auto-generated constructor stub
 		 component = new Component();
 		 component.getServers().add(Protocol.HTTP,port);
 		 component.getDefaultHost().attach(serverRoot, rootTarget);

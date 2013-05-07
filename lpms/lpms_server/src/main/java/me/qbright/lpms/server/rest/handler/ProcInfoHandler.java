@@ -5,7 +5,6 @@ import me.qbright.lpms.server.rest.RequestHandler;
 import me.qbright.lpms.server.service.ProcInfoService;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.restlet.resource.Get;
-import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
 /**

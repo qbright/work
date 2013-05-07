@@ -1,6 +1,6 @@
 package me.qbright.lpms.server.rest.handler;
 
-import org.restlet.resource.Post;
+import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 import me.qbright.lpms.server.rest.RequestHandler;
 import me.qbright.lpms.server.service.GeneralInfoService;

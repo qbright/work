@@ -5,7 +5,7 @@ import java.io.IOException;
 import me.qbright.lpms.server.rest.RequestHandler;
 import me.qbright.lpms.server.service.JavaEnvironmentService;
 
-import org.restlet.resource.Post;
+import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 
 /**
