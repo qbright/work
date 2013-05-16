@@ -9,6 +9,7 @@ import me.qbright.lpms.web.monitor.MonitorUtil;
 
 import org.apache.log4j.Logger;
 import org.restlet.data.Form;
+import org.restlet.data.MediaType;
 import org.restlet.data.Method;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
@@ -30,9 +31,9 @@ public class RestClient {
 
 	private static final String DOT = ":";
 
-	private static final String MACHINE_NAME = "machine_name";
+	private static final String MACHINE_NAME = "machineName";
 
-	private static final String PASSWORD = "password";
+	private static final String PASSWORD = "machinePassword";
 
 	@SuppressWarnings("unchecked")
 	public static Map<String, Object> getRestResponseAsMap(
@@ -65,14 +66,16 @@ public class RestClient {
 		ClientResource client = new ClientResource(Method.POST, getUrl(
 				monitorUtil, serverMachine));
 		Form form = new Form();
-
 		form.add(MACHINE_NAME, serverMachine.getMachineName());
 		form.add(PASSWORD, serverMachine.getPassword());
 		try {
+			System.out.println(form.getWebRepresentation().getText());
 			String requestJson = client.post(
 					form.getWebRepresentation().getText()).getText();
-
-			 
+			
+			if(requestJson == null){
+				throw new ResourceException(404);
+			}
 			return om.readValue(requestJson,Boolean.class);
 		} catch (ResourceException e) {
 			log.error("获取系统信息出错   url ：" + getUrl(monitorUtil, serverMachine),
