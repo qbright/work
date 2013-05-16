@@ -35,10 +35,6 @@ public class LoginController {
 	public String login(Model model, User user, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		user.setPassword(EncodeCommon.digester(user.getPassword()));
-
-		if (checkOnSession(request)) {
-			return "main";
-		} else {
 			user = loginService.checkLogin(user);
 			if (user != null) {
 				request.getSession().setAttribute("user", user);
@@ -49,18 +45,5 @@ public class LoginController {
 				request.getRequestDispatcher("/").forward(request, response);
 				return null;
 			}
-		}
-
 	}
-
-	private boolean checkOnSession(HttpServletRequest request) {
-		User sessionUser = (User) request.getSession().getAttribute("user");
-
-		if (sessionUser != null && loginService.checkLogin(sessionUser) != null) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 }

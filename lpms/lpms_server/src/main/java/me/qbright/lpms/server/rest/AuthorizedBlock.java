@@ -26,15 +26,16 @@ public class AuthorizedBlock extends Filter{
 	@Override
 	protected int beforeHandle(Request request, Response response) {
 		int result = CONTINUE;
-		
+		int stop = STOP;
 		Form form = new Form(request.getEntity());
-
-		
-
-		//System.out.println(form.getFirstValue("machine_name"));
-		return result;
+			String machineName = form.getFirstValue("machineName");
+		String machinePassword = form.getFirstValue("machinePassword");
+		if(machineName == null || machinePassword == null || !machineName.equals(System.getProperty("machineName")) || !machinePassword.equals(System.getProperty("machinePassword"))){
+				return stop;
+		}else{
+			return result;
+		}
 	}
-
 
 	@Override
 	public void setNext(Restlet next) {

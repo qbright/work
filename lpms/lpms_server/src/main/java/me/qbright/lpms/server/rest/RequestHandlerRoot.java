@@ -12,14 +12,10 @@ import org.restlet.routing.Router;
  * 
  */
 public class RequestHandlerRoot extends Application{
-
-
 	@Override
 	public Restlet createInboundRoot() {
 		Router router = new Router(getContext());
 		router = RestletServer.bindServerResource(router, ConfigCommon.getKeyString("PACKAGE_PATH"));
 		return router; 
 	}
-
-	
 }

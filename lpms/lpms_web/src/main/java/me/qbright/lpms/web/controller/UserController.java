@@ -58,7 +58,7 @@ public class UserController {
 				.getPassword()));
 		serverMachine.setBelongTo(user.getId());
 		serverMachineManagerService.saveMachine(serverMachine);
-		userManagerService.addMachine(66L);
+		userManagerService.addMachine(user.getId());
 		return true;
 	}
 

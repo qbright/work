@@ -47,6 +47,9 @@
 		</div>
 	</div>
 	<div class="container " id="main_container"></div>
+	
+	
+	<input type="hidden" id="userId" value="${user.id}">
 	<div>
 		<script type="text/javascript" src="static/js/jquery-1.9.0.min.js"></script>
 		<script type="text/javascript"

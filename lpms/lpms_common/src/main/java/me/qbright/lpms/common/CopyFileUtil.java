@@ -30,8 +30,7 @@ public class CopyFileUtil {
 	 *            jar包中文件夹相对路径 （相对于 classpath）
 	 * @param targetPathName
 	 *            复制的目标文件夹
-	 * @param overRide
-	 *            是否覆盖已有的文件
+	 *
 	 * 
 	 */
 	public static void copeFileByJar(String pathName, String targetPathName) {
