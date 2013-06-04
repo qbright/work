@@ -16,6 +16,12 @@ public class Main {
 	private static Logger logger = Logger.getLogger(Main.class);
 
 	public static void main(String[] args) {
+
+		System.setProperty("org.restlet.engine.loggerFacadeClass",
+				"org.restlet.ext.slf4j.Slf4jLoggerFacade");
+
+		CopyFileUtil.copeFileByJar("sigar-lib", "sigar-lib");// jar包环境
+		System.setProperty("java.library.path", "sigar-lib");// dev环境
 		try {
 			if (System.getProperty("machineName") == null
 					|| System.getProperty("machinePassword") == null) {
